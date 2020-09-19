@@ -1,6 +1,8 @@
 package com.example.papaassistant;
 
-public class Instruction {
+import java.io.Serializable;
+
+public class Instruction implements Serializable {
     private int step;
     private String instruction;
 }

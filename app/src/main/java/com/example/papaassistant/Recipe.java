@@ -3,9 +3,10 @@ package com.example.papaassistant;
 import androidx.room.Embedded;
 import androidx.room.Relation;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Recipe {
+public class Recipe implements Serializable {
     @Embedded public RecipeSchema recipe;
 
     @Relation(
