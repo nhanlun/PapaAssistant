@@ -8,6 +8,7 @@ public class RecipeSchema {
 
     @PrimaryKey private int id;
     private String name;
+    private String imageLink;
 
     public int getId() {
         return id;
@@ -23,5 +24,13 @@ public class RecipeSchema {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getImageLink() {
+        return imageLink;
+    }
+
+    public void setImageLink(String imageLink) {
+        this.imageLink = imageLink;
     }
 }

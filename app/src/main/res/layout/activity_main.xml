@@ -15,6 +15,7 @@
         android:layout_gravity="center"
         android:maxLines="1"
         android:lines="1"
+        android:id="@+id/editTextSearch"
         />
 
     <androidx.viewpager2.widget.ViewPager2
