@@ -2,7 +2,10 @@
 <androidx.appcompat.widget.LinearLayoutCompat
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:backgroundTint="@color/colorFilter"
+    android:id="@+id/outer"
+    android:backgroundTintMode="screen">
 
     <TextView
         android:layout_width="match_parent"
@@ -11,6 +14,7 @@
         android:id="@+id/textViewItemRecipe"
         android:layout_gravity="center"
         android:gravity="center"
+        android:textColor="@color/black"
         android:text="@string/app_name"
         />
 
