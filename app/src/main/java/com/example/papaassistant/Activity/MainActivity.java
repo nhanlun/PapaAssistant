@@ -3,6 +3,7 @@ package com.example.papaassistant.Activity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -13,6 +14,7 @@ import android.widget.EditText;
 import com.example.papaassistant.DishTypeList;
 import com.example.papaassistant.R;
 import com.example.papaassistant.Adapter.ViewPagerAdapter;
+import com.example.papaassistant.Recipe;
 
 import org.w3c.dom.Text;
 
@@ -27,6 +29,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Recipe recipe = new Recipe();
+        recipe.recipe.setImageLink("https://spoonacular.com/recipeImages/654959-312x231.jpg");
+        Intent intent = new Intent(MainActivity.this, RecipeActivity.class);
+        intent.putExtra("recipe", recipe);
+        startActivity(intent);
+
         viewPager2 = findViewById(R.id.mainViewPager);
         DishTypeList dishTypeList = new DishTypeList();
         dishTypeList.createList();

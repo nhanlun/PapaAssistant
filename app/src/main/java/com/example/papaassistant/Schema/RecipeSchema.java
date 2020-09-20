@@ -3,8 +3,10 @@ package com.example.papaassistant.Schema;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.io.Serializable;
+
 @Entity (tableName = "Recipe")
-public class RecipeSchema {
+public class RecipeSchema implements Serializable {
 
     @PrimaryKey private int id;
     private String name;

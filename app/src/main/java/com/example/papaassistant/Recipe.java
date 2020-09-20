@@ -28,4 +28,10 @@ public class Recipe implements Serializable {
             entity = InstructionSchema.class
     )
     public ArrayList<Instruction> instructions;
+
+    public Recipe() {
+        recipe = new RecipeSchema();
+        ingredients = new ArrayList<>();
+        instructions = new ArrayList<>();
+    }
 }

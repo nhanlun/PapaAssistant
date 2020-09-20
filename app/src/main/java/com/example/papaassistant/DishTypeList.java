@@ -17,5 +17,6 @@ public class DishTypeList {
 
     public void createList(){
         dishTypeArrayList.add(new DishType(R.drawable.appetizer, "Appetizer"));
+        dishTypeArrayList.add(new DishType(R.drawable.appetizer, "Appetizer"));
     }
 }

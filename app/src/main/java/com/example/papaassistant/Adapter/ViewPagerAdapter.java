@@ -25,7 +25,7 @@ public class ViewPagerAdapter extends RecyclerView.Adapter<ViewPagerAdapter.View
         this.dishTypeArrayList = dishTypeArrayList;
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    static class ViewHolder extends RecyclerView.ViewHolder {
         private TextView textView;
         private ImageView imageView;
 

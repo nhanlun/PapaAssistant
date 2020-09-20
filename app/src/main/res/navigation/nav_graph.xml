@@ -9,5 +9,16 @@
         android:id="@+id/mainActivity"
         android:name="com.example.papaassistant.Activity.MainActivity"
         android:label="activity_main"
-        tools:layout="@layout/activity_main" />
+        tools:layout="@layout/activity_main" >
+        <action
+            android:id="@+id/action_mainActivity_to_recipeActivity"
+            app:destination="@id/recipeActivity"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+    </activity>
+    <activity
+        android:id="@+id/recipeActivity"
+        android:name="com.example.papaassistant.Activity.RecipeActivity"
+        android:label="activity_recipe"
+        tools:layout="@layout/activity_recipe" />
 </navigation>
