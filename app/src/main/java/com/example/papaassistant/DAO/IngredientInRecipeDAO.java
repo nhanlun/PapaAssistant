@@ -1,8 +1,10 @@
-package com.example.papaassistant;
+package com.example.papaassistant.DAO;
 
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
+
+import com.example.papaassistant.Schema.IngredientInRecipeSchema;
 
 @Dao
 public interface IngredientInRecipeDAO {

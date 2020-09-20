@@ -3,6 +3,10 @@ package com.example.papaassistant;
 import androidx.room.Embedded;
 import androidx.room.Relation;
 
+import com.example.papaassistant.Schema.IngredientInRecipeSchema;
+import com.example.papaassistant.Schema.InstructionSchema;
+import com.example.papaassistant.Schema.RecipeSchema;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
