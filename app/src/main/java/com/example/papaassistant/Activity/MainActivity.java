@@ -5,6 +5,7 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -18,11 +19,17 @@ import com.example.papaassistant.Recipe;
 
 import org.w3c.dom.Text;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class MainActivity extends AppCompatActivity {
 
     EditText editTextSearch;
     ViewPager2 viewPager2;
     ViewPagerAdapter viewPagerAdapter;
+    int currentPage =0;
+    int NUM_PAGES = 4;
+
 
 
     @Override
@@ -41,6 +48,25 @@ public class MainActivity extends AppCompatActivity {
         dishTypeList.createList();
         viewPagerAdapter = new ViewPagerAdapter(this, dishTypeList.getDishTypeArrayList());
         viewPager2.setAdapter(viewPagerAdapter);
+        final Handler handler = new Handler();
+        final Runnable Update = new Runnable() {
+            public void run() {
+                if (currentPage == NUM_PAGES) {
+                    currentPage = 0;
+                }
+                //currentPage = viewPager2.getCurrentItem();
+                viewPager2.setCurrentItem(currentPage++, true);
+            }
+        };
+
+        Timer swipeTimer = new Timer();
+        swipeTimer.schedule(new TimerTask() {
+
+            @Override
+            public void run() {
+                handler.post(Update);
+            }
+        }, 500, 3000);
 
         editTextSearch = findViewById(R.id.editTextSearch);
         editTextSearch.addTextChangedListener(new TextWatcher() {

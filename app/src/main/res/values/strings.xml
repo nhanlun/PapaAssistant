@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">PapaAssistant</string>
+    <string name="dish_type_img">DishTypeImage</string>
 </resources>
