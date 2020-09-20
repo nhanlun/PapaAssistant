@@ -1,14 +1,23 @@
 package com.example.papaassistant;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
-import androidx.room.PrimaryKey;
 
-@Entity(tableName = "IngredientRecipe")
-public class Ingredient {
-    @PrimaryKey
-    private String name;
+@Entity(tableName = "IngredientInRecipe", primaryKeys = {"id", "name"})
+public class IngredientInRecipeSchema {
+    private int id;
+    @NonNull
+    String name;
     private double amount;
     private String unit;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -33,5 +42,4 @@ public class Ingredient {
     public void setUnit(String unit) {
         this.unit = unit;
     }
-
 }
