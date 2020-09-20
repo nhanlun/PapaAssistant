@@ -1,9 +1,12 @@
-package com.example.papaassistant;
+package com.example.papaassistant.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+
+import com.example.papaassistant.R;
+import com.example.papaassistant.Recipe;
 
 public class RecipeActivity extends AppCompatActivity {
 

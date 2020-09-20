@@ -1,10 +1,14 @@
-package com.example.papaassistant;
+package com.example.papaassistant.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
 import android.util.Log;
+
+import com.example.papaassistant.DishTypeList;
+import com.example.papaassistant.R;
+import com.example.papaassistant.Adapter.ViewPagerAdapter;
 
 public class MainActivity extends AppCompatActivity {
 

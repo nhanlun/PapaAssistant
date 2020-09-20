@@ -1,4 +1,4 @@
-package com.example.papaassistant;
+package com.example.papaassistant.Schema;
 
 import androidx.room.Entity;
 

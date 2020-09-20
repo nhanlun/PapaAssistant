@@ -1,4 +1,4 @@
-package com.example.papaassistant;
+package com.example.papaassistant.DAO;
 
 import androidx.room.Dao;
 import androidx.room.Insert;
