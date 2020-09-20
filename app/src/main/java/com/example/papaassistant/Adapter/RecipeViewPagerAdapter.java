@@ -48,7 +48,7 @@ public class RecipeViewPagerAdapter extends RecyclerView.Adapter<RecipeViewPager
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.item_recipe, parent, false);
-        view.setBackgroundResource(R.drawable.test);
+        view.setBackgroundResource(R.drawable.appetizer);
         ViewHolder holder = new ViewHolder(view);
         return holder;
     }

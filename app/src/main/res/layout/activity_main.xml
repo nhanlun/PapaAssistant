@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activity.MainActivity"
+    android:background="@color/colorBackGround"
     android:orientation="vertical">
 
     <androidx.appcompat.widget.AppCompatEditText
@@ -16,6 +17,7 @@
         android:maxLines="1"
         android:lines="1"
         android:id="@+id/editTextSearch"
+        android:hint="@string/search_hint"
         />
 
     <androidx.viewpager2.widget.ViewPager2
