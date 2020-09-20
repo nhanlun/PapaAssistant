@@ -17,10 +17,6 @@ import com.example.papaassistant.BlurBuilder;
 import com.example.papaassistant.R;
 import com.example.papaassistant.Recipe;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
-
 public class RecipeViewPagerAdapter extends RecyclerView.Adapter<RecipeViewPagerAdapter.ViewHolder> {
     static final String LOG_TAG = RecipeViewPagerAdapter.class.getSimpleName();
 
@@ -48,8 +44,7 @@ public class RecipeViewPagerAdapter extends RecyclerView.Adapter<RecipeViewPager
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.item_recipe, parent, false);
-        ViewHolder holder = new ViewHolder(view);
-        return holder;
+        return new ViewHolder(view);
     }
 
     @Override

@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 handler.post(Update);
             }
-        }, 500, 3000);
+        }, 1000, 3000);
 
         editTextSearch = findViewById(R.id.editTextSearch);
         editTextSearch.addTextChangedListener(new TextWatcher() {
