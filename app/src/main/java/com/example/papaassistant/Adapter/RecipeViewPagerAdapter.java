@@ -44,17 +44,20 @@ public class RecipeViewPagerAdapter extends RecyclerView.Adapter<RecipeViewPager
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.item_recipe, parent, false);
-        return new ViewHolder(view);
+        view.setBackgroundResource(R.drawable.test);
+        ViewHolder holder = new ViewHolder(view);
+        return holder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         // TODO: finish this
 //        holder.textViewItemRecipe.setBackground(new BitmapDrawable(context.getResources(), bitmap));
-        Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.test);
+       // Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.test);
 //        holder.textViewItemRecipe.setBackgroundResource(R.drawable.appetizer);
-        bitmap = BlurBuilder.blur(context, bitmap);
-        holder.textViewItemRecipe.setBackground(new BitmapDrawable(context.getResources(), bitmap));
+        //bitmap = BlurBuilder.blur(context, bitmap);
+        //holder.textViewItemRecipe.setBackground(new BitmapDrawable(context.getResources(), bitmap));
+        holder.textViewItemRecipe.setText("Testing");
     }
 
     @Override
