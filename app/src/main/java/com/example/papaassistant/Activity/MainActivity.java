@@ -1,6 +1,8 @@
 package com.example.papaassistant.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.Intent;
@@ -9,7 +11,9 @@ import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.MenuInflater;
 import android.view.View;
+import android.view.ViewConfiguration;
 import android.widget.EditText;
 
 import com.example.papaassistant.DishTypeList;
@@ -20,6 +24,7 @@ import com.example.papaassistant.Recipe;
 
 import org.w3c.dom.Text;
 
+import java.lang.reflect.Field;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -100,4 +105,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+
 }
