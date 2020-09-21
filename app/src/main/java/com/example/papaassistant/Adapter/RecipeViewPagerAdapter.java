@@ -76,7 +76,6 @@ public class RecipeViewPagerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        // TODO: finish this
         if (position == 0) {
             ViewHolder0 viewHolder = (ViewHolder0) holder;
             if (bitmap != null)
