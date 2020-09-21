@@ -1,22 +1,21 @@
 package com.example.papaassistant.Activity;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager2.widget.ViewPager2;
-
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.papaassistant.Adapter.RecipeViewPagerAdapter;
 import com.example.papaassistant.R;
 import com.example.papaassistant.Recipe;
+import com.example.papaassistant.RecipeRepository;
+
+import java.util.Calendar;
+import java.util.Date;
 
 public class RecipeActivity extends AppCompatActivity {
 
@@ -29,12 +28,26 @@ public class RecipeActivity extends AppCompatActivity {
     TextView textViewHealthScore;
     TextView textViewReadyTime;
 
+    RecipeRepository recipeRepository;
+
+    Recipe recipe;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe);
 
         initComponents();
+        putRecipeIntoHistory();
+    }
+
+    private void putRecipeIntoHistory() {
+        if (recipe == null)
+            return;
+        Date date = Calendar.getInstance().getTime();
+        recipe.recipe.setLastAccess(date);
+        recipeRepository = new RecipeRepository(this.getApplication());
+        recipeRepository.insertRecipeToHistory(recipe);
     }
 
     private void initComponents() {
@@ -50,8 +63,6 @@ public class RecipeActivity extends AppCompatActivity {
 
         if (recipe == null)
             return;
-
-        Log.d(LOG_TAG, "recipe received");
 
         editTextRecipe.setText(recipe.recipe.getName());
         textViewNumberOfPeople.setText(String.valueOf(recipe.recipe.getNumberOfPeople()));

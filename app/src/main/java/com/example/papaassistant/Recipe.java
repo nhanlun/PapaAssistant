@@ -8,6 +8,7 @@ import com.example.papaassistant.Schema.RecipeSchema;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Recipe implements Serializable {
     @Embedded public RecipeSchema recipe;
@@ -18,7 +19,7 @@ public class Recipe implements Serializable {
             projection = {"step", "instruction"},
             entity = InstructionSchema.class
     )
-    public ArrayList<Instruction> instructions;
+    public List<Instruction> instructions;
 
     public Recipe() {
         recipe = new RecipeSchema();

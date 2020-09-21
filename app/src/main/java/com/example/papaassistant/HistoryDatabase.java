@@ -20,7 +20,7 @@ public abstract class HistoryDatabase extends RoomDatabase {
     public abstract InstructionDAO instructionDAO();
     public abstract RecipeDAO recipeDAO();
 
-    private static final int NUMBER_OF_THREADS = 4;
+    private static final int NUMBER_OF_THREADS = 10;
     static final ExecutorService databaseWriteExecutor =
             Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
