@@ -6,20 +6,17 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-import com.example.papaassistant.DAO.IngredientInRecipeDAO;
 import com.example.papaassistant.DAO.InstructionDAO;
 import com.example.papaassistant.DAO.RecipeDAO;
-import com.example.papaassistant.Schema.IngredientInRecipeSchema;
 import com.example.papaassistant.Schema.InstructionSchema;
 import com.example.papaassistant.Schema.RecipeSchema;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {RecipeSchema.class, IngredientInRecipeSchema.class, InstructionSchema.class}, version = 1, exportSchema = false)
+@Database(entities = {RecipeSchema.class, InstructionSchema.class}, version = 1, exportSchema = false)
 public abstract class HistoryDatabase extends RoomDatabase {
 
-    public abstract IngredientInRecipeDAO ingredientInRecipeDAO();
     public abstract InstructionDAO instructionDAO();
     public abstract RecipeDAO recipeDAO();
 

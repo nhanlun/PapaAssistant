@@ -13,11 +13,49 @@
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:layout_gravity="center"
-        android:textSize="20sp"
+        android:textSize="30sp"
         android:textAlignment="center"
+        android:textColor="@color/black"
         android:id="@+id/editTextRecipe"
         android:enabled="false"
+        android:fontFamily="cursive"
         />
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="20dp"
+        android:layout_gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textSize="18sp"
+            android:layout_weight="1"
+            android:layout_marginHorizontal="5dp"
+            android:id="@+id/textViewRecipeNumberOfPeople"
+            app:drawableStartCompat="@drawable/ic_baseline_people_alt_24"
+            android:textAlignment="textEnd"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textSize="18sp"
+            android:layout_weight="1"
+            android:layout_marginHorizontal="5dp"
+            android:id="@+id/textViewRecipeHealthScore"
+            app:drawableStartCompat="@drawable/ic_baseline_favorite_24"
+            android:textAlignment="textEnd"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textSize="18sp"
+            android:layout_weight="1"
+            android:layout_marginHorizontal="5dp"
+            android:id="@+id/textViewRecipeReadyTime"
+            app:drawableStartCompat="@drawable/ic_baseline_timer_24"
+            android:textAlignment="textEnd"/>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
     <androidx.viewpager2.widget.ViewPager2
         android:layout_width="match_parent"
         android:layout_height="match_parent"

@@ -3,7 +3,6 @@ package com.example.papaassistant;
 import androidx.room.Embedded;
 import androidx.room.Relation;
 
-import com.example.papaassistant.Schema.IngredientInRecipeSchema;
 import com.example.papaassistant.Schema.InstructionSchema;
 import com.example.papaassistant.Schema.RecipeSchema;
 
@@ -16,14 +15,6 @@ public class Recipe implements Serializable {
     @Relation(
             parentColumn = "id",
             entityColumn = "recipeId",
-            projection = {"name", "amount", "unit"},
-            entity = IngredientInRecipeSchema.class
-    )
-    public ArrayList<IngredientInRecipe> ingredients;
-
-    @Relation(
-            parentColumn = "id",
-            entityColumn = "recipeId",
             projection = {"step", "instruction"},
             entity = InstructionSchema.class
     )
@@ -31,7 +22,6 @@ public class Recipe implements Serializable {
 
     public Recipe() {
         recipe = new RecipeSchema();
-        ingredients = new ArrayList<>();
         instructions = new ArrayList<>();
     }
 }

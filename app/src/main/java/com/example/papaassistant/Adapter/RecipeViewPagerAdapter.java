@@ -1,80 +1,109 @@
 package com.example.papaassistant.Adapter;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.BitmapDrawable;
-import android.util.Log;
+import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.papaassistant.BlurBuilder;
+import com.example.papaassistant.Instruction;
 import com.example.papaassistant.R;
 import com.example.papaassistant.Recipe;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
-
-public class RecipeViewPagerAdapter extends RecyclerView.Adapter<RecipeViewPagerAdapter.ViewHolder> {
+public class RecipeViewPagerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     static final String LOG_TAG = RecipeViewPagerAdapter.class.getSimpleName();
 
     Context context;
     Recipe recipe;
     Bitmap bitmap;
-    Bitmap blurBitmap;
 
-    public RecipeViewPagerAdapter(Context context, Recipe recipe) {
+    public static class ViewHolder0 extends RecyclerView.ViewHolder {
+        public ImageView imageView;
+
+        public ViewHolder0(@NonNull View itemView) {
+            super(itemView);
+            imageView = itemView.findViewById(R.id.imageViewRecipe);
+        }
+    }
+
+    public static class ViewHolder1 extends RecyclerView.ViewHolder {
+        public TextView textViewItemRecipe;
+        public TextView textViewStep;
+
+        public ViewHolder1(@NonNull View itemView) {
+            super(itemView);
+            textViewItemRecipe = itemView.findViewById(R.id.textViewItemRecipe);
+            textViewItemRecipe.setMovementMethod(new ScrollingMovementMethod());
+            textViewStep = itemView.findViewById(R.id.textViewStep);
+        }
+    }
+
+    public RecipeViewPagerAdapter(Context context, Recipe recipe, Bitmap bitmap) {
         this.context = context;
         this.recipe = recipe;
-        // TODO: load image here
-//        String urllink = this.recipe.recipe.getImageLink();
-//        Log.d(LOG_TAG, urllink);
-//        try {
-//            URL url = new URL(urllink);
-//            bitmap = BitmapFactory.decodeStream(url.openConnection().getInputStream());
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
+        this.bitmap = bitmap;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        if (position == 0) return 0;
+        else return 1;
     }
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.item_recipe, parent, false);
-        view.setBackgroundResource(R.drawable.appetizer);
-        ViewHolder holder = new ViewHolder(view);
-        return holder;
+        View view;
+        if (viewType == 0) {
+            view = inflater.inflate(R.layout.item_recipe_image, parent, false);
+            return new ViewHolder0(view);
+        }
+        else {
+            view = inflater.inflate(R.layout.item_recipe, parent, false);
+            return new ViewHolder1(view);
+        }
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         // TODO: finish this
-//        holder.textViewItemRecipe.setBackground(new BitmapDrawable(context.getResources(), bitmap));
-       // Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.test);
-//        holder.textViewItemRecipe.setBackgroundResource(R.drawable.appetizer);
-        //bitmap = BlurBuilder.blur(context, bitmap);
-        //holder.textViewItemRecipe.setBackground(new BitmapDrawable(context.getResources(), bitmap));
-        holder.textViewItemRecipe.setText("Testing");
+        if (position == 0) {
+            ViewHolder0 viewHolder = (ViewHolder0) holder;
+            if (bitmap != null)
+                viewHolder.imageView.setImageBitmap(bitmap);
+        }
+        else {
+            ViewHolder1 viewHolder = (ViewHolder1) holder;
+            if (bitmap != null) {
+                viewHolder.textViewItemRecipe.setBackground(new BitmapDrawable(context.getResources(), bitmap));
+                viewHolder.textViewItemRecipe.setBackgroundTintMode(PorterDuff.Mode.SCREEN);
+                viewHolder.textViewItemRecipe.setBackgroundTintList(ColorStateList.valueOf(0xdddddddd));
+            }
+            if (position == 1) {
+                viewHolder.textViewItemRecipe.setText(recipe.recipe.getIngredients());
+                viewHolder.textViewStep.setText(context.getString(R.string.step, 0));
+            }
+            else {
+                int positionInInstruction = position - 2;
+                Instruction instruction = recipe.instructions.get(positionInInstruction);
+                viewHolder.textViewItemRecipe.setText(instruction.getInstruction());
+                viewHolder.textViewStep.setText(context.getString(R.string.step, positionInInstruction + 1));
+            }
+        }
     }
 
     @Override
     public int getItemCount() {
-        return recipe.ingredients.size() + recipe.instructions.size() + 1;
-    }
-
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView textViewItemRecipe;
-
-        public ViewHolder(@NonNull View itemView) {
-            super(itemView);
-            textViewItemRecipe = itemView.findViewById(R.id.textViewItemRecipe);
-        }
+        return recipe.instructions.size() + 2;
     }
 }

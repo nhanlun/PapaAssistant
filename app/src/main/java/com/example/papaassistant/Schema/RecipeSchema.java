@@ -11,6 +11,11 @@ public class RecipeSchema implements Serializable {
     @PrimaryKey private int id;
     private String name;
     private String imageLink;
+    private String ingredients;
+
+    private double healthScore;
+    private int numberOfPeople;
+    private int readyTime;
 
     public int getId() {
         return id;
@@ -34,5 +39,37 @@ public class RecipeSchema implements Serializable {
 
     public void setImageLink(String imageLink) {
         this.imageLink = imageLink;
+    }
+
+    public String getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(String ingredients) {
+        this.ingredients = ingredients;
+    }
+
+    public double getHealthScore() {
+        return healthScore;
+    }
+
+    public void setHealthScore(double healthScore) {
+        this.healthScore = healthScore;
+    }
+
+    public int getNumberOfPeople() {
+        return numberOfPeople;
+    }
+
+    public void setNumberOfPeople(int numberOfPeople) {
+        this.numberOfPeople = numberOfPeople;
+    }
+
+    public int getReadyTime() {
+        return readyTime;
+    }
+
+    public void setReadyTime(int readyTime) {
+        this.readyTime = readyTime;
     }
 }

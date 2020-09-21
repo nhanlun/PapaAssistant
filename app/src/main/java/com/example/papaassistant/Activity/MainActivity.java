@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.example.papaassistant.DishTypeList;
+import com.example.papaassistant.Instruction;
 import com.example.papaassistant.R;
 import com.example.papaassistant.Adapter.ViewPagerAdapter;
 import com.example.papaassistant.Recipe;
@@ -37,8 +38,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // TODO: remove this
         Recipe recipe = new Recipe();
         recipe.recipe.setImageLink("https://spoonacular.com/recipeImages/654959-312x231.jpg");
+        recipe.recipe.setName("Indomie with omelettttttttttttttttttttttttt");
+        recipe.recipe.setIngredients("Indomie\nEgg");
+        Instruction tmp = new Instruction();
+        tmp.setStep(1);
+        tmp.setInstruction("just cook it :v");
+        recipe.instructions.add(tmp);
+        recipe.instructions.add(tmp);
         Intent intent = new Intent(MainActivity.this, RecipeActivity.class);
         intent.putExtra("recipe", recipe);
         startActivity(intent);
@@ -66,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 handler.post(Update);
             }
-        }, 500, 3000);
+        }, 1000, 3000);
 
         editTextSearch = findViewById(R.id.editTextSearch);
         editTextSearch.addTextChangedListener(new TextWatcher() {

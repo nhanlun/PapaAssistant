@@ -4,19 +4,32 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:backgroundTint="@color/colorFilter"
-    android:id="@+id/outer"
-    android:backgroundTintMode="screen">
+    android:id="@+id/outer">
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:textSize="20sp"
         android:id="@+id/textViewItemRecipe"
         android:layout_gravity="center"
         android:gravity="center"
         android:textColor="@color/black"
         android:text="@string/app_name"
+        android:layout_weight="1"
+        android:scrollbars="vertical"
+        android:padding="10dp"
+        android:background="@drawable/no_image"
+        android:backgroundTint="@color/colorFilter"
+        android:backgroundTintMode="screen"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textAlignment="center"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:id="@+id/textViewStep"
         />
 
 
