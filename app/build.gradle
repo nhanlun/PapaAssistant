@@ -48,3 +48,11 @@ dependencies {
     testImplementation "androidx.room:room-testing:$room_version"
 
 }
+
+dependencies {
+    def appcompat_version = "1.2.0"
+
+    implementation "androidx.appcompat:appcompat:$appcompat_version"
+    // For loading and tinting drawables on older versions of the platform
+    implementation "androidx.appcompat:appcompat-resources:$appcompat_version"
+}
