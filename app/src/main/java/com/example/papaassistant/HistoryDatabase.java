@@ -16,10 +16,9 @@ import com.example.papaassistant.Schema.RecipeSchema;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {RecipeSchema.class, IngredientInRecipeSchema.class, InstructionSchema.class}, version = 1, exportSchema = false)
+@Database(entities = {RecipeSchema.class, InstructionSchema.class}, version = 1, exportSchema = false)
 public abstract class HistoryDatabase extends RoomDatabase {
 
-    public abstract IngredientInRecipeDAO ingredientInRecipeDAO();
     public abstract InstructionDAO instructionDAO();
     public abstract RecipeDAO recipeDAO();
 

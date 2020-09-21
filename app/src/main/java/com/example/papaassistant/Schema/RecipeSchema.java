@@ -11,6 +11,7 @@ public class RecipeSchema implements Serializable {
     @PrimaryKey private int id;
     private String name;
     private String imageLink;
+    private String ingredients;
 
     public int getId() {
         return id;
@@ -34,5 +35,13 @@ public class RecipeSchema implements Serializable {
 
     public void setImageLink(String imageLink) {
         this.imageLink = imageLink;
+    }
+
+    public String getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(String ingredients) {
+        this.ingredients = ingredients;
     }
 }

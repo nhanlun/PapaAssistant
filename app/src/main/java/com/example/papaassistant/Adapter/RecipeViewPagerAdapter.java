@@ -1,10 +1,11 @@
 package com.example.papaassistant.Adapter;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.BitmapDrawable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +14,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.papaassistant.BlurBuilder;
 import com.example.papaassistant.R;
 import com.example.papaassistant.Recipe;
 
@@ -23,7 +23,6 @@ public class RecipeViewPagerAdapter extends RecyclerView.Adapter<RecipeViewPager
     Context context;
     Recipe recipe;
     Bitmap bitmap;
-    Bitmap blurBitmap;
 
     public RecipeViewPagerAdapter(Context context, Recipe recipe) {
         this.context = context;
@@ -43,26 +42,26 @@ public class RecipeViewPagerAdapter extends RecyclerView.Adapter<RecipeViewPager
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.item_recipe, parent, false);
-        view.setBackgroundResource(R.drawable.test);
-        ViewHolder holder = new ViewHolder(view);
-        return holder;
+        View view = inflater.inflate(R.layout.item_recipe, parent, false);;
+        return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         // TODO: finish this
-//        holder.textViewItemRecipe.setBackground(new BitmapDrawable(context.getResources(), bitmap));
-       // Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.test);
-//        holder.textViewItemRecipe.setBackgroundResource(R.drawable.appetizer);
-        //bitmap = BlurBuilder.blur(context, bitmap);
-        //holder.textViewItemRecipe.setBackground(new BitmapDrawable(context.getResources(), bitmap));
+        bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.test);
+        if (position == 0) {
+            holder.textViewItemRecipe.setBackgroundTintList(ColorStateList.valueOf(0));
+        }
+        holder.textViewItemRecipe.setBackground(new BitmapDrawable(context.getResources(), bitmap));
         holder.textViewItemRecipe.setText("Testing");
+        holder.textViewItemRecipe.setBackgroundTintMode(PorterDuff.Mode.SCREEN);
+        holder.textViewItemRecipe.setBackgroundTintList(ColorStateList.valueOf(0xdddddddd));
     }
 
     @Override
     public int getItemCount() {
-        return recipe.ingredients.size() + recipe.instructions.size() + 1;
+        return recipe.instructions.size() + 2;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
