@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.ViewGroup;
@@ -38,6 +39,7 @@ public class RecipeActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         Recipe recipe = (Recipe) intent.getSerializableExtra("recipe");
+        Bitmap bitmap = intent.getParcelableExtra("image");
 
         if (recipe == null)
             return;
@@ -45,7 +47,7 @@ public class RecipeActivity extends AppCompatActivity {
         Log.d(LOG_TAG, "recipe received");
 
         editTextRecipe.setText(recipe.recipe.getName());
-        adapter = new RecipeViewPagerAdapter(this, recipe);
+        adapter = new RecipeViewPagerAdapter(this, recipe, bitmap);
         viewPager2.setAdapter(adapter);
     }
 }

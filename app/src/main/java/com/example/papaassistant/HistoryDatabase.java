@@ -6,10 +6,8 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-import com.example.papaassistant.DAO.IngredientInRecipeDAO;
 import com.example.papaassistant.DAO.InstructionDAO;
 import com.example.papaassistant.DAO.RecipeDAO;
-import com.example.papaassistant.Schema.IngredientInRecipeSchema;
 import com.example.papaassistant.Schema.InstructionSchema;
 import com.example.papaassistant.Schema.RecipeSchema;
 
