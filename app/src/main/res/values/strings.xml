@@ -5,4 +5,8 @@
     <string name="step">Step %d</string>
     <string name="search_hint">Recipe, dish type, e.t.c</string>
     <string name="recipe_img">Recipe Image</string>
+    <string name="library">Library</string>
+    <string name="history">History</string>
+    <string name="advance_search">Advanced Search</string>
+    <string name="setting">Setting</string>
 </resources>
