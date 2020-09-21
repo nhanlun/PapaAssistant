@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.Adapter;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.papaassistant.Adapter.RecipeViewPagerAdapter;
 import com.example.papaassistant.R;
@@ -24,6 +25,9 @@ public class RecipeActivity extends AppCompatActivity {
     EditText editTextRecipe;
     ViewPager2 viewPager2;
     RecipeViewPagerAdapter adapter;
+    TextView textViewNumberOfPeople;
+    TextView textViewHealthScore;
+    TextView textViewReadyTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +40,9 @@ public class RecipeActivity extends AppCompatActivity {
     private void initComponents() {
         editTextRecipe = findViewById(R.id.editTextRecipe);
         viewPager2 = findViewById(R.id.recipeViewPager);
+        textViewNumberOfPeople = findViewById(R.id.textViewRecipeNumberOfPeople);
+        textViewHealthScore = findViewById(R.id.textViewRecipeHealthScore);
+        textViewReadyTime = findViewById(R.id.textViewRecipeReadyTime);
 
         Intent intent = getIntent();
         Recipe recipe = (Recipe) intent.getSerializableExtra("recipe");
@@ -47,6 +54,9 @@ public class RecipeActivity extends AppCompatActivity {
         Log.d(LOG_TAG, "recipe received");
 
         editTextRecipe.setText(recipe.recipe.getName());
+        textViewNumberOfPeople.setText(String.valueOf(recipe.recipe.getNumberOfPeople()));
+        textViewHealthScore.setText(String.valueOf(recipe.recipe.getHealthScore()));
+        textViewReadyTime.setText(String.valueOf(recipe.recipe.getReadyTime()));
         adapter = new RecipeViewPagerAdapter(this, recipe, bitmap);
         viewPager2.setAdapter(adapter);
     }

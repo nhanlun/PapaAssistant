@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.LinearLayoutCompat
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal">
@@ -17,11 +18,14 @@
         android:weightSum="2"
         android:orientation="vertical">
 
-        <TextView
+        <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:id="@+id/recipeName"/>
+            android:id="@+id/recipeName"
+            android:layout_margin="5dp"
+            android:textSize="18sp"
+            android:enabled="false"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -35,19 +39,22 @@
                 android:layout_height="match_parent"
                 android:id="@+id/recipeNumOfPeople"
                 android:layout_weight="1"
-                android:drawableStart="@drawable/ic_baseline_people_alt_24" />
+                android:layout_margin="5dp"
+                app:drawableStartCompat="@drawable/ic_baseline_people_alt_24" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:id="@+id/recipeHealthy"
-                android:drawableStart="@drawable/ic_baseline_favorite_24"/>
+                android:layout_margin="5dp"
+                app:drawableStartCompat="@drawable/ic_baseline_favorite_24" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/recipeTime"
-                android:drawableStart="@drawable/ic_baseline_timer_24"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:layout_margin="5dp"
+                app:drawableStartCompat="@drawable/ic_baseline_timer_24" />
 
 
 

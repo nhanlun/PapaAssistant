@@ -18,6 +18,9 @@
         android:layout_weight="1"
         android:scrollbars="vertical"
         android:padding="10dp"
+        android:background="@drawable/no_image"
+        android:backgroundTint="@color/colorFilter"
+        android:backgroundTintMode="screen"
         />
     <TextView
         android:layout_width="match_parent"

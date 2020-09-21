@@ -84,12 +84,13 @@ public class RecipeViewPagerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         }
         else {
             ViewHolder1 viewHolder = (ViewHolder1) holder;
-            viewHolder.textViewItemRecipe.setBackground(new BitmapDrawable(context.getResources(), bitmap));
-            viewHolder.textViewItemRecipe.setBackgroundTintMode(PorterDuff.Mode.SCREEN);
-            viewHolder.textViewItemRecipe.setBackgroundTintList(ColorStateList.valueOf(0xdddddddd));
+            if (bitmap != null) {
+                viewHolder.textViewItemRecipe.setBackground(new BitmapDrawable(context.getResources(), bitmap));
+                viewHolder.textViewItemRecipe.setBackgroundTintMode(PorterDuff.Mode.SCREEN);
+                viewHolder.textViewItemRecipe.setBackgroundTintList(ColorStateList.valueOf(0xdddddddd));
+            }
             if (position == 1) {
                 viewHolder.textViewItemRecipe.setText(recipe.recipe.getIngredients());
-                // viewHolder.textViewItemRecipe.setText(context.getResources().getText(R.string.very_long_dummy_text));
                 viewHolder.textViewStep.setText(context.getString(R.string.step, 0));
             }
             else {
