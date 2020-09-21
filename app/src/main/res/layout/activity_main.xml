@@ -16,6 +16,7 @@
         android:layout_gravity="center"
         android:maxLines="1"
         android:lines="1"
+        android:drawableLeft="@drawable/ic_baseline_search_24"
         android:id="@+id/editTextSearch"
         android:hint="@string/search_hint"
         />
