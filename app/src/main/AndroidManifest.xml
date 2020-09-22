@@ -14,13 +14,24 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Activity.HistoryActivity"></activity>
-        <activity android:name=".Activity.RecipeActivity" />
+        <activity android:name=".Activity.RecipeActivity"></activity>
+        <activity android:name=".Activity.SearchActivity">
+            <!--            <intent-filter>-->
+            <!--                <action android:name="android.intent.action.SEARCH" />-->
+            <!--            </intent-filter>-->
+            <!--            <meta-data-->
+            <!--                android:name="android.app.searchable"-->
+            <!--                android:resource="@xml/searchable" />-->
+        </activity>
         <activity android:name=".Activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            <meta-data
+                android:name="android.app.default_searchable"
+                android:value=".Activity.SearchActivity" />
+
         </activity>
     </application>
 

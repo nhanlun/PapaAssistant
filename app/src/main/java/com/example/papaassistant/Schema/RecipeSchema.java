@@ -9,11 +9,27 @@ import com.example.papaassistant.DateConverter;
 import java.io.Serializable;
 import java.util.Date;
 
-@Entity (tableName = "Recipe")
+@Entity(tableName = "Recipe")
 @TypeConverters({DateConverter.class})
 public class RecipeSchema implements Serializable {
 
-    @PrimaryKey private int id;
+    @PrimaryKey
+    private int id;
+
+    public RecipeSchema(int id, String name, String imageLink, String ingredients, double healthScore, int numberOfPeople, int readyTime) {
+        //TODO: What to do with the last access date
+        this.id = id;
+        this.name = name;
+        this.imageLink = imageLink;
+        this.ingredients = ingredients;
+        this.healthScore = healthScore;
+        this.numberOfPeople = numberOfPeople;
+        this.readyTime = readyTime;
+    }
+
+    public RecipeSchema() {
+    }
+
     private String name;
     private String imageLink;
     private String ingredients;
