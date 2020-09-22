@@ -2,14 +2,18 @@ package com.example.papaassistant.Schema;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+import androidx.room.TypeConverters;
+
+import com.example.papaassistant.DateConverter;
 
 import java.io.Serializable;
+import java.util.Date;
 
-@Entity(tableName = "Recipe")
+@Entity (tableName = "Recipe")
+@TypeConverters({DateConverter.class})
 public class RecipeSchema implements Serializable {
 
-    @PrimaryKey
-    private int id;
+    @PrimaryKey private int id;
     private String name;
     private String imageLink;
     private String ingredients;
@@ -18,18 +22,7 @@ public class RecipeSchema implements Serializable {
     private int numberOfPeople;
     private int readyTime;
 
-    public RecipeSchema() {
-    }
-
-    public RecipeSchema(int id, String name, String imageLink, String ingredients, double healthScore, int numberOfPeople, int readyTime) {
-        this.id = id;
-        this.name = name;
-        this.imageLink = imageLink;
-        this.ingredients = ingredients;
-        this.healthScore = healthScore;
-        this.numberOfPeople = numberOfPeople;
-        this.readyTime = readyTime;
-    }
+    private Date lastAccess;
 
     public int getId() {
         return id;
@@ -85,5 +78,13 @@ public class RecipeSchema implements Serializable {
 
     public void setReadyTime(int readyTime) {
         this.readyTime = readyTime;
+    }
+
+    public Date getLastAccess() {
+        return lastAccess;
+    }
+
+    public void setLastAccess(Date lastAccess) {
+        this.lastAccess = lastAccess;
     }
 }

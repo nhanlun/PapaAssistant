@@ -1,12 +1,25 @@
 package com.example.papaassistant.Activity;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.viewpager2.widget.ViewPager2;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.view.ViewConfiguration;
 import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +31,9 @@ import com.example.papaassistant.Instruction;
 import com.example.papaassistant.R;
 import com.example.papaassistant.Recipe;
 
+import org.w3c.dom.Text;
+
+import java.lang.reflect.Field;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -31,10 +47,16 @@ public class MainActivity extends AppCompatActivity {
     int NUM_PAGES = 4;
 
 
+    private DrawerLayout drawerLayout;
+    private ActionBarDrawerToggle drawerToggle;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        initDrawerLayout();
+
 
         // TODO: remove this
         setupComponent();
@@ -75,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 handler.post(Update);
             }
-        }, 1000, 3000);
+        }, 2000, 3000);
 
         editTextSearch = findViewById(R.id.editTextSearch);
         editTextSearch.addTextChangedListener(new TextWatcher() {
@@ -100,6 +122,36 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void initDrawerLayout() {
+        drawerLayout = findViewById(R.id.mainDrawerLayout);
+        drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawerLayout.addDrawerListener(drawerToggle);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+    }
+
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        // Sync the toggle state after onRestoreInstanceState has occurred.
+        drawerToggle.syncState();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (drawerToggle.onOptionsItemSelected(item)) {
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void setupComponent() {
