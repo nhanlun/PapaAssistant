@@ -9,4 +9,7 @@
     <string name="history">History</string>
     <string name="advance_search">Advanced Search</string>
     <string name="setting">Setting</string>
+
+    <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
+    <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
 </resources>
