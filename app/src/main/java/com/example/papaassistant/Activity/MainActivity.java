@@ -1,24 +1,22 @@
 package com.example.papaassistant.Activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.viewpager2.widget.ViewPager2;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager2.widget.ViewPager2;
+
+import com.example.papaassistant.Adapter.ViewPagerAdapter;
 import com.example.papaassistant.DishTypeList;
 import com.example.papaassistant.Instruction;
 import com.example.papaassistant.R;
-import com.example.papaassistant.Adapter.ViewPagerAdapter;
 import com.example.papaassistant.Recipe;
-
-import org.w3c.dom.Text;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -28,9 +26,9 @@ public class MainActivity extends AppCompatActivity {
     EditText editTextSearch;
     ViewPager2 viewPager2;
     ViewPagerAdapter viewPagerAdapter;
-    int currentPage =0;
+    Button searchButton;
+    int currentPage = 0;
     int NUM_PAGES = 4;
-
 
 
     @Override
@@ -39,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // TODO: remove this
+        setupComponent();
+
         Recipe recipe = new Recipe();
         recipe.recipe.setImageLink("https://spoonacular.com/recipeImages/654959-312x231.jpg");
         recipe.recipe.setName("Indomie with omelettttttttttttttttttttttttt");
@@ -90,13 +90,27 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
                 boolean found = false;
-                for (int i = 0; i < s.length(); ++i) if (s.charAt(i) == '\n') {
-                    s.delete(i, i);
-                    found = true;
-                }
+                for (int i = 0; i < s.length(); ++i)
+                    if (s.charAt(i) == '\n') {
+                        s.delete(i, i);
+                        found = true;
+                    }
                 if (found) {
                     // TODO: call activity search
                 }
+            }
+        });
+    }
+
+    private void setupComponent() {
+        searchButton = findViewById(R.id.search_button);
+        searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String query = editTextSearch.getText().toString();
+                Intent intent = new Intent(MainActivity.this, SearchActivity.class);
+                intent.putExtra("query", query);
+                startActivity(intent);
             }
         });
     }

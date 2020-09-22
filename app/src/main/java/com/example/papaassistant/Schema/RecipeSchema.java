@@ -5,10 +5,11 @@ import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
 
-@Entity (tableName = "Recipe")
+@Entity(tableName = "Recipe")
 public class RecipeSchema implements Serializable {
 
-    @PrimaryKey private int id;
+    @PrimaryKey
+    private int id;
     private String name;
     private String imageLink;
     private String ingredients;
@@ -16,6 +17,19 @@ public class RecipeSchema implements Serializable {
     private double healthScore;
     private int numberOfPeople;
     private int readyTime;
+
+    public RecipeSchema() {
+    }
+
+    public RecipeSchema(int id, String name, String imageLink, String ingredients, double healthScore, int numberOfPeople, int readyTime) {
+        this.id = id;
+        this.name = name;
+        this.imageLink = imageLink;
+        this.ingredients = ingredients;
+        this.healthScore = healthScore;
+        this.numberOfPeople = numberOfPeople;
+        this.readyTime = readyTime;
+    }
 
     public int getId() {
         return id;

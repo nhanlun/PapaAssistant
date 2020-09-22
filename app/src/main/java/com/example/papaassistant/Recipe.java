@@ -10,7 +10,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Recipe implements Serializable {
-    @Embedded public RecipeSchema recipe;
+    @Embedded
+    public RecipeSchema recipe;
 
     @Relation(
             parentColumn = "id",
@@ -19,6 +20,13 @@ public class Recipe implements Serializable {
             entity = InstructionSchema.class
     )
     public ArrayList<Instruction> instructions;
+
+    public Recipe(int id, String name, String imageLink, String ingredients
+            , double healthScore, int numberOfPeople, int readyTime,
+                  ArrayList<Instruction> instructions) {
+        recipe = new RecipeSchema(id, name, imageLink, ingredients, healthScore, numberOfPeople, readyTime);
+        this.instructions = instructions;
+    }
 
     public Recipe() {
         recipe = new RecipeSchema();
