@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    tools:context=".Activity.MainActivity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.MainActivity"
     android:background="@color/colorBackGround"
     android:orientation="vertical">
 
@@ -16,7 +21,7 @@
         android:layout_gravity="center"
         android:maxLines="1"
         android:lines="1"
-        android:drawableLeft="@drawable/ic_baseline_search_24"
+        android:drawableStart="@drawable/ic_baseline_search_24"
         android:id="@+id/editTextSearch"
         android:hint="@string/search_hint"
         />
@@ -30,4 +35,6 @@
         android:foregroundGravity="center"
         />
 
-</androidx.appcompat.widget.LinearLayoutCompat>
+    </LinearLayout>
+
+</LinearLayout>
