@@ -5,14 +5,11 @@ import androidx.lifecycle.LiveData;
 
 import android.os.Bundle;
 
-import com.example.papaassistant.HistoryDatabase;
 import com.example.papaassistant.R;
 import com.example.papaassistant.Recipe;
 import com.example.papaassistant.RecipeRepository;
 
 import java.util.List;
-import java.util.Observable;
-import java.util.Observer;
 
 public class HistoryActivity extends AppCompatActivity {
 

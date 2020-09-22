@@ -31,8 +31,7 @@ public class SearchListAdapter extends RecyclerView.Adapter<SearchListAdapter.Vi
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
         View convertView = inflater.inflate(R.layout.item_list_recipe, parent, false);
-        ViewHolder viewHolder = new ViewHolder(convertView);
-        return viewHolder;
+        return new ViewHolder(convertView);
     }
 
     @Override
@@ -43,7 +42,7 @@ public class SearchListAdapter extends RecyclerView.Adapter<SearchListAdapter.Vi
         holder.healthyTextView.setText(String.valueOf(recipe.recipe.getHealthScore()));
         holder.nameTextView.setText(recipe.recipe.getName());
         Glide.with(context).load(recipe.recipe.getImageLink()).into(holder.imageView);
-        Log.d("Holder", String.valueOf(position));
+//        Log.d("Holder", String.valueOf(position));
     }
 
     @Override

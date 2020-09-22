@@ -1,9 +1,7 @@
-package com.example.papaassistant;
+package com.example.papaassistant.Database;
 
-import android.app.Application;
 import android.content.Context;
 
-import androidx.lifecycle.MutableLiveData;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
@@ -17,23 +15,23 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 @Database(entities = {RecipeSchema.class, InstructionSchema.class}, version = 1, exportSchema = false)
-public abstract class LibraryDatabase extends RoomDatabase {
+public abstract class HistoryDatabase extends RoomDatabase {
 
-    public abstract RecipeDAO recipeDAO();
     public abstract InstructionDAO instructionDAO();
+    public abstract RecipeDAO recipeDAO();
 
-    private static final int NUMBER_OF_THREAD = 10;
+    private static final int NUMBER_OF_THREADS = 10;
     static final ExecutorService databaseWriteExecutor =
-            Executors.newFixedThreadPool(NUMBER_OF_THREAD);
+            Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
-    private static volatile LibraryDatabase INSTANCE;
+    private static volatile HistoryDatabase INSTANCE;
 
-    static LibraryDatabase getDatabase(Context context) {
+    static HistoryDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {
-            synchronized (LibraryDatabase.class) {
+            synchronized (HistoryDatabase.class) {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                            LibraryDatabase.class, "LibraryDatabase")
+                            HistoryDatabase.class, "HistoryDatabase")
                             .build();
                 }
             }

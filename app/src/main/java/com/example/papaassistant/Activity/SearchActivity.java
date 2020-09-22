@@ -21,7 +21,7 @@ import java.util.HashMap;
 
 public class SearchActivity extends AppCompatActivity implements uiThreadCallback {
     private ArrayList<Recipe> recipes;
-    private TextView textView;
+//    private TextView textView;
     private RecyclerView recyclerView;
     private String query;
 
@@ -35,7 +35,7 @@ public class SearchActivity extends AppCompatActivity implements uiThreadCallbac
     }
 
     private void initComponent() {
-        textView = findViewById(R.id.searchResultTextView);
+//        textView = findViewById(R.id.searchResultTextView);
         recyclerView = findViewById(R.id.listRecipe);
         RecyclerView.LayoutManager lm = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(lm);
@@ -56,10 +56,7 @@ public class SearchActivity extends AppCompatActivity implements uiThreadCallbac
     @Override
     public void publishToUiThread(ArrayList<Recipe> recipeArrayList) {
         recipes = recipeArrayList;
-        StringBuilder builder = new StringBuilder();
-        Formatter fmt = new Formatter(builder);
-        fmt.format(getText(R.string.search_found).toString(), query, recipes.size());
-        textView.setText(builder.toString());
+//        textView.setText(getString(R.string.search_found, query, recipes.size()));
 
         SearchListAdapter adapter = new SearchListAdapter(this, recipes);
         recyclerView.setAdapter(adapter);

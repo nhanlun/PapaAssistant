@@ -25,8 +25,11 @@
             android:layout_weight="1"
             android:id="@+id/recipeName"
             android:layout_margin="5dp"
-            android:textSize="18sp"
-            android:enabled="false"/>
+            android:textSize="25sp"
+            android:textColor="@color/black"
+            android:enabled="false"
+            android:layout_gravity="center"
+            android:fontFamily="cursive"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -40,24 +43,27 @@
                 android:layout_height="match_parent"
                 android:id="@+id/recipeNumOfPeople"
                 android:layout_weight="1"
-                android:layout_margin="5dp"
-                app:drawableStartCompat="@drawable/ic_baseline_people_alt_24" />
+                app:drawableStartCompat="@drawable/ic_baseline_people_alt_24"
+                android:layout_marginHorizontal="5dp"
+                android:gravity="center"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:id="@+id/recipeHealthy"
                 android:layout_margin="5dp"
-                app:drawableStartCompat="@drawable/ic_baseline_favorite_24" />
+                app:drawableStartCompat="@drawable/ic_baseline_favorite_24"
+                android:layout_marginHorizontal="5dp"
+                android:gravity="center"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/recipeTime"
                 android:layout_weight="1"
                 android:layout_margin="5dp"
-                app:drawableStartCompat="@drawable/ic_baseline_timer_24" />
-
-
+                app:drawableStartCompat="@drawable/ic_baseline_timer_24"
+                android:layout_marginHorizontal="5dp"
+                android:gravity="center"/>
 
 
         </LinearLayout>

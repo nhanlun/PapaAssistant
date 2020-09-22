@@ -22,20 +22,19 @@ import java.util.HashMap;
 
 
 public class RecipeAPIGETer extends AsyncTask<Void, Void, ArrayList<Recipe>> {
-    final String BASEURL = "https://api.spoonacular.com/recipes/complexSearch";
-    final String APIKEY = "apiKey";
+    private static final String BASEURL = "https://api.spoonacular.com/recipes/complexSearch";
+    private static final String APIKEY = "apiKey";
     final String apiKey;
-    final String QUERY = "query";
-    final String RECIPEINFO = "addRecipeInformation";
-    final String RECIPENUTRI = "addRecipeNutrition";
-    final String INSTRUCTION = "instructionsRequired";
-    final String NUMBER = "number";
-    final String DISHTYPE = "type";
+    private static final String QUERY = "query";
+    private static final String RECIPEINFO = "addRecipeInformation";
+    private static final String RECIPENUTRI = "addRecipeNutrition";
+    private static final String INSTRUCTION = "instructionsRequired";
+    private static final String NUMBER = "number";
+    private static final String DISHTYPE = "type";
 
     final private String baseImageUrl = "https://spoonacular.com/recipeImages/";
     final private String imageSize = "-480x360.";
     private HashMap<String, String> arguments;
-    private ArrayList<Recipe> recipes = new ArrayList<>();
 
     WeakReference<uiThreadCallback> uiThreadCallbackWeakReference;
 
@@ -198,7 +197,7 @@ public class RecipeAPIGETer extends AsyncTask<Void, Void, ArrayList<Recipe>> {
     @Override
     protected ArrayList<Recipe> doInBackground(Void... voids) {
         Log.d("APIKey", APIKEY);
-        ArrayList<Recipe> response = new ArrayList<Recipe>();
+        ArrayList<Recipe> response;
         URL url = ParseUrl(arguments);
 
         String responseString = makeRequest(url);

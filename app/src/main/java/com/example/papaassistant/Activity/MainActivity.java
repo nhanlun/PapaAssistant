@@ -109,6 +109,7 @@ public class MainActivity extends AppCompatActivity {
                     Intent intent = new Intent(MainActivity.this, SearchActivity.class);
                     intent.putExtra("query", query);
                     startActivity(intent);
+                    s.clear();
                 }
             }
         });
