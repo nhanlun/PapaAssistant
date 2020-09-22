@@ -33,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
     int currentPage = 0;
     int NUM_PAGES = 4;
 
-
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle drawerToggle;
 
@@ -43,14 +42,16 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         initDrawerLayout();
-
+        initComponents();
 
         // TODO: remove this
 
 //        Recipe recipe = new Recipe();
 //        recipe.recipe.setImageLink("https://spoonacular.com/recipeImages/654959-312x231.jpg");
-//        recipe.recipe.setName("Indomie with omelettttttttttttttttttttttttt");
-//        recipe.recipe.setIngredients("Indomie\nEgg");
+//        recipe.recipe.setName("Something good :v");
+//        recipe.recipe.setIngredients("Something\nGood");
+//        recipe.recipe.setHealthScore(100);
+//        recipe.recipe.setId(1);
 //        Instruction tmp = new Instruction();
 //        tmp.setStep(1);
 //        tmp.setInstruction("just cook it :v");
@@ -59,15 +60,10 @@ public class MainActivity extends AppCompatActivity {
 //        Intent intent = new Intent(MainActivity.this, RecipeActivity.class);
 //        intent.putExtra("recipe", recipe);
 //        startActivity(intent);
-//
-//        intent = new Intent(MainActivity.this, HistoryActivity.class);
+
+//        Intent intent = new Intent(MainActivity.this, HistoryActivity.class);
 //        startActivity(intent);
 
-        viewPager2 = findViewById(R.id.mainViewPager);
-        DishTypeList dishTypeList = new DishTypeList();
-        dishTypeList.createList();
-        viewPagerAdapter = new ViewPagerAdapter(this, dishTypeList.getDishTypeArrayList());
-        viewPager2.setAdapter(viewPagerAdapter);
         final Handler handler = new Handler();
         final Runnable Update = new Runnable() {
             public void run() {
@@ -118,6 +114,14 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private void initComponents() {
+        viewPager2 = findViewById(R.id.mainViewPager);
+        DishTypeList dishTypeList = new DishTypeList();
+        dishTypeList.createList();
+        viewPagerAdapter = new ViewPagerAdapter(this, dishTypeList.getDishTypeArrayList());
+        viewPager2.setAdapter(viewPagerAdapter);
+    }
+
     private void initDrawerLayout() {
         drawerLayout = findViewById(R.id.mainDrawerLayout);
         drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -132,13 +136,13 @@ public class MainActivity extends AppCompatActivity {
         // Sync the toggle state after onRestoreInstanceState has occurred.
         drawerToggle.syncState();
     }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
+//  TODO: remove this
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        MenuInflater inflater = getMenuInflater();
+//        inflater.inflate(R.menu.menu, menu);
+//        return super.onCreateOptionsMenu(menu);
+//    }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {

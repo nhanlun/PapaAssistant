@@ -47,7 +47,6 @@ public class HistoryActivity extends AppCompatActivity {
                 recipes = (ArrayList<Recipe>) recipesTmp;
                 adapter = new SearchListAdapter(getBaseContext(), recipes);
                 recyclerView.setAdapter(adapter);
-                recyclerView.invalidate();
             }
         });
     }
