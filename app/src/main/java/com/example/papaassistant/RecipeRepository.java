@@ -8,18 +8,23 @@ import com.example.papaassistant.DAO.InstructionDAO;
 import com.example.papaassistant.DAO.RecipeDAO;
 import com.example.papaassistant.Schema.InstructionSchema;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class RecipeRepository {
 
     private InstructionDAO instructionDAOHistory;
-    private RecipeDAO recipeDAO;
+    private RecipeDAO recipeDAOHistory;
+    private InstructionDAO instructionDAOLibrary;
+    private RecipeDAO recipeDAOLibrary;
 
     public RecipeRepository(Application application) {
-        HistoryDatabase database = HistoryDatabase.getDatabase(application);
-        instructionDAOHistory = database.instructionDAO();
-        recipeDAO = database.recipeDAO();
+        HistoryDatabase historyDatabase = HistoryDatabase.getDatabase(application);
+        instructionDAOHistory = historyDatabase.instructionDAO();
+        recipeDAOHistory = historyDatabase.recipeDAO();
+
+        LibraryDatabase libraryDatabase = LibraryDatabase.getDatabase(application);
+        instructionDAOLibrary = libraryDatabase.instructionDAO();
+        recipeDAOLibrary = libraryDatabase.recipeDAO();
     }
 
     public void insertRecipeToHistory(final Recipe recipe) {
@@ -37,16 +42,16 @@ public class RecipeRepository {
         HistoryDatabase.databaseWriteExecutor.execute(new Runnable() {
             @Override
             public void run() {
-                recipeDAO.insert(recipe.recipe);
+                recipeDAOHistory.insert(recipe.recipe);
             }
         });
     }
 
     public LiveData<List<Recipe>> getRecipeInHistory() {
-        return recipeDAO.getRecipeInHistory();
+        return recipeDAOHistory.getRecipe();
     }
 
     public LiveData<Integer> countRecipeInHistory() {
-        return recipeDAO.countRecipeInHistory();
+        return recipeDAOHistory.countRecipe();
     }
 }

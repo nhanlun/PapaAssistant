@@ -19,9 +19,9 @@ public interface RecipeDAO {
 
     @Transaction
     @Query("SELECT * FROM Recipe ORDER BY lastAccess DESC")
-    LiveData<List<Recipe>> getRecipeInHistory();
+    LiveData<List<Recipe>> getRecipe();
 
     @Transaction
     @Query("SELECT COUNT(*) FROM Recipe")
-    LiveData<Integer> countRecipeInHistory();
+    LiveData<Integer> countRecipe();
 }
