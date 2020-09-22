@@ -1,28 +1,19 @@
 package com.example.papaassistant.Activity;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.viewpager2.widget.ViewPager2;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.view.ViewConfiguration;
 import android.widget.EditText;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.papaassistant.Adapter.ViewPagerAdapter;
@@ -31,9 +22,6 @@ import com.example.papaassistant.Instruction;
 import com.example.papaassistant.R;
 import com.example.papaassistant.Recipe;
 
-import org.w3c.dom.Text;
-
-import java.lang.reflect.Field;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -42,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
     EditText editTextSearch;
     ViewPager2 viewPager2;
     ViewPagerAdapter viewPagerAdapter;
-    Button searchButton;
     int currentPage = 0;
     int NUM_PAGES = 4;
 
@@ -59,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
 
 
         // TODO: remove this
-        setupComponent();
 
         Recipe recipe = new Recipe();
         recipe.recipe.setImageLink("https://spoonacular.com/recipeImages/654959-312x231.jpg");
@@ -119,6 +105,10 @@ public class MainActivity extends AppCompatActivity {
                     }
                 if (found) {
                     // TODO: call activity search
+                    String query = s.toString();
+                    Intent intent = new Intent(MainActivity.this, SearchActivity.class);
+                    intent.putExtra("query", query);
+                    startActivity(intent);
                 }
             }
         });
@@ -154,16 +144,4 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void setupComponent() {
-        searchButton = findViewById(R.id.search_button);
-        searchButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String query = editTextSearch.getText().toString();
-                Intent intent = new Intent(MainActivity.this, SearchActivity.class);
-                intent.putExtra("query", query);
-                startActivity(intent);
-            }
-        });
-    }
 }
