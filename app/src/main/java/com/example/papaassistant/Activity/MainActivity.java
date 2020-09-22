@@ -47,18 +47,21 @@ public class MainActivity extends AppCompatActivity {
 
         // TODO: remove this
 
-        Recipe recipe = new Recipe();
-        recipe.recipe.setImageLink("https://spoonacular.com/recipeImages/654959-312x231.jpg");
-        recipe.recipe.setName("Indomie with omelettttttttttttttttttttttttt");
-        recipe.recipe.setIngredients("Indomie\nEgg");
-        Instruction tmp = new Instruction();
-        tmp.setStep(1);
-        tmp.setInstruction("just cook it :v");
-        recipe.instructions.add(tmp);
-        recipe.instructions.add(tmp);
-        Intent intent = new Intent(MainActivity.this, RecipeActivity.class);
-        intent.putExtra("recipe", recipe);
-        startActivity(intent);
+//        Recipe recipe = new Recipe();
+//        recipe.recipe.setImageLink("https://spoonacular.com/recipeImages/654959-312x231.jpg");
+//        recipe.recipe.setName("Indomie with omelettttttttttttttttttttttttt");
+//        recipe.recipe.setIngredients("Indomie\nEgg");
+//        Instruction tmp = new Instruction();
+//        tmp.setStep(1);
+//        tmp.setInstruction("just cook it :v");
+//        recipe.instructions.add(tmp);
+//        recipe.instructions.add(tmp);
+//        Intent intent = new Intent(MainActivity.this, RecipeActivity.class);
+//        intent.putExtra("recipe", recipe);
+//        startActivity(intent);
+//
+//        intent = new Intent(MainActivity.this, HistoryActivity.class);
+//        startActivity(intent);
 
         viewPager2 = findViewById(R.id.mainViewPager);
         DishTypeList dishTypeList = new DishTypeList();
@@ -83,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 handler.post(Update);
             }
-        }, 2000, 3000);
+        }, 2000, 5000);
 
         editTextSearch = findViewById(R.id.editTextSearch);
         editTextSearch.addTextChangedListener(new TextWatcher() {

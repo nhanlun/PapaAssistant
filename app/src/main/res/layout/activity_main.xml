@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activity.MainActivity"
-    android:background="@color/colorBackGround"
+    android:background="@color/colorBackGroundDarker"
     android:id="@+id/mainDrawerLayout">
 
     <LinearLayout
@@ -13,18 +13,29 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <androidx.appcompat.widget.AppCompatEditText
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:textSize="20sp"
+            android:background="@drawable/border"
+            android:layout_margin="15dp"
             android:layout_gravity="center"
-            android:maxLines="1"
-            android:lines="1"
-            android:drawableStart="@drawable/ic_baseline_search_24"
-            android:id="@+id/editTextSearch"
-            android:hint="@string/search_hint"
-            />
+            android:gravity="center"
+            android:foregroundGravity="center">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:layout_margin="10dp"
+                android:layout_gravity="center"
+                android:maxLines="1"
+                android:lines="1"
+                android:drawableStart="@drawable/ic_baseline_search_24"
+                android:id="@+id/editTextSearch"
+                android:hint="@string/search_hint"
+                android:background="@android:color/transparent"
+                />
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
         <androidx.viewpager2.widget.ViewPager2
             android:layout_width="match_parent"
@@ -32,8 +43,7 @@
             android:id="@+id/mainViewPager"
             android:layout_margin="25dp"
             android:layout_gravity="center"
-            android:foregroundGravity="center"
-            />
+            android:foregroundGravity="center" />
     </LinearLayout>
 
     <com.google.android.material.navigation.NavigationView
