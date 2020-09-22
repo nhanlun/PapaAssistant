@@ -18,10 +18,9 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.papaassistant.Adapter.ViewPagerAdapter;
 import com.example.papaassistant.DishTypeList;
-import com.example.papaassistant.Instruction;
 import com.example.papaassistant.R;
-import com.example.papaassistant.Recipe;
 
+import java.util.HashMap;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -109,8 +108,11 @@ public class MainActivity extends AppCompatActivity {
                 if (found) {
                     // TODO: call activity search
                     String query = s.toString();
+                    HashMap<String, String> arguments = new HashMap<>();
+                    arguments.put("query", query);
+
                     Intent intent = new Intent(MainActivity.this, SearchActivity.class);
-                    intent.putExtra("query", query);
+                    intent.putExtra("arguments", arguments);
                     startActivity(intent);
                     s.clear();
                 }
