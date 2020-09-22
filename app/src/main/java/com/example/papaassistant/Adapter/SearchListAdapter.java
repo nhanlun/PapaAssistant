@@ -23,6 +23,7 @@ import com.example.papaassistant.Recipe;
 import java.util.ArrayList;
 
 public class SearchListAdapter extends RecyclerView.Adapter<SearchListAdapter.ViewHolder> {
+    private static int cornerRadius = 10;
     private Context context;
     private ArrayList<Recipe> recipes;
 
@@ -49,9 +50,8 @@ public class SearchListAdapter extends RecyclerView.Adapter<SearchListAdapter.Vi
         Glide.with(context).load(recipe.recipe.getImageLink())
                 .placeholder(R.drawable.no_image)
                 .transform(new MultiTransformation<Bitmap>(new CenterCrop(),
-                        new RoundedCorners((int) (5 * Resources.getSystem().getDisplayMetrics().density))))
+                        new RoundedCorners((int) (cornerRadius * Resources.getSystem().getDisplayMetrics().density))))
                 .into(holder.imageView);
-//        Log.d("Holder", String.valueOf(position));
     }
 
     @Override

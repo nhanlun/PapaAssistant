@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@drawable/border">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardBackgroundColor="@color/colorBackGround"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="0dp">
 
     <ImageView
         android:layout_width="match_parent"
@@ -12,7 +14,6 @@
         android:foregroundGravity="center"
         android:src="@drawable/no_image"
         android:id="@+id/imageViewRecipe"
-        android:scaleType="fitCenter"
-        android:layout_margin="1dp"/>
+        android:scaleType="fitCenter" />
 
-</androidx.appcompat.widget.LinearLayoutCompat>
+</androidx.cardview.widget.CardView>
