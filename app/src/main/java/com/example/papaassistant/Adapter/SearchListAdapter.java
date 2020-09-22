@@ -1,6 +1,8 @@
 package com.example.papaassistant.Adapter;
 
 import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +14,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.MultiTransformation;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.example.papaassistant.R;
 import com.example.papaassistant.Recipe;
 
@@ -41,7 +46,11 @@ public class SearchListAdapter extends RecyclerView.Adapter<SearchListAdapter.Vi
         holder.servingTextView.setText(String.valueOf(recipe.recipe.getNumberOfPeople()));
         holder.healthyTextView.setText(String.valueOf(recipe.recipe.getHealthScore()));
         holder.nameTextView.setText(recipe.recipe.getName());
-        Glide.with(context).load(recipe.recipe.getImageLink()).into(holder.imageView);
+        Glide.with(context).load(recipe.recipe.getImageLink())
+                .placeholder(R.drawable.no_image)
+                .transform(new MultiTransformation<Bitmap>(new CenterCrop(),
+                        new RoundedCorners((int) (5 * Resources.getSystem().getDisplayMetrics().density))))
+                .into(holder.imageView);
 //        Log.d("Holder", String.valueOf(position));
     }
 

@@ -7,4 +7,6 @@
     <color name="black">#000000</color>
     <color name="darkgrey">	#3e3535</color>
     <color name="colorBackGround">#dcd3c5</color>
+    <color name="colorBackGroundLighter">#efe6d8</color>
+    <color name="colorBackGroundDarker">#bcb3a5</color>
 </resources>

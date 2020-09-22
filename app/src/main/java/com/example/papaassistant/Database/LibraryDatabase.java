@@ -21,12 +21,12 @@ public abstract class LibraryDatabase extends RoomDatabase {
     public abstract InstructionDAO instructionDAO();
 
     private static final int NUMBER_OF_THREAD = 10;
-    static final ExecutorService databaseWriteExecutor =
+    public static final ExecutorService databaseWriteExecutor =
             Executors.newFixedThreadPool(NUMBER_OF_THREAD);
 
     private static volatile LibraryDatabase INSTANCE;
 
-    static LibraryDatabase getDatabase(Context context) {
+    public static LibraryDatabase getDatabase(Context context) {
         if (INSTANCE == null) {
             synchronized (LibraryDatabase.class) {
                 if (INSTANCE == null) {

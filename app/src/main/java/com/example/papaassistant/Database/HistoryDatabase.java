@@ -21,12 +21,12 @@ public abstract class HistoryDatabase extends RoomDatabase {
     public abstract RecipeDAO recipeDAO();
 
     private static final int NUMBER_OF_THREADS = 10;
-    static final ExecutorService databaseWriteExecutor =
+    public static final ExecutorService databaseWriteExecutor =
             Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
     private static volatile HistoryDatabase INSTANCE;
 
-    static HistoryDatabase getDatabase(final Context context) {
+    public static HistoryDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {
             synchronized (HistoryDatabase.class) {
                 if (INSTANCE == null) {
