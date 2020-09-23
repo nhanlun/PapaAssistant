@@ -2,7 +2,8 @@
 <androidx.appcompat.widget.LinearLayoutCompat
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/border">
 
     <ImageView
         android:layout_width="match_parent"
@@ -11,6 +12,7 @@
         android:foregroundGravity="center"
         android:src="@drawable/no_image"
         android:id="@+id/imageViewRecipe"
-        android:scaleType="fitCenter"/>
+        android:scaleType="fitCenter"
+        android:layout_margin="1dp"/>
 
 </androidx.appcompat.widget.LinearLayoutCompat>

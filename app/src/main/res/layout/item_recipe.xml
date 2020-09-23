@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:id="@+id/outer">
+    android:id="@+id/outer"
+    android:background="@drawable/border">
 
     <TextView
         android:layout_width="match_parent"
@@ -17,10 +18,11 @@
         android:text="@string/app_name"
         android:layout_weight="1"
         android:scrollbars="vertical"
-        android:padding="10dp"
+        android:padding="5dp"
         android:background="@drawable/no_image"
         android:backgroundTint="@color/colorFilter"
         android:backgroundTintMode="screen"
+        android:layout_margin="1dp"
         />
     <TextView
         android:layout_width="match_parent"
