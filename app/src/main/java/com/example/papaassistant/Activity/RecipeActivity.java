@@ -54,7 +54,6 @@ public class RecipeActivity extends AppCompatActivity {
         // TODO: finish this huhu
         Toast toast = Toast.makeText(this, "Saved", Toast.LENGTH_SHORT);
         toast.show();
-        recipe.recipe.setId(0);
         recipeRepository.insertRecipeToLibrary(recipe);
     }
 

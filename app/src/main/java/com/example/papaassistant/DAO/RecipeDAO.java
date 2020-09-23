@@ -17,7 +17,7 @@ import java.util.List;
 @Dao
 public interface RecipeDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insert(RecipeSchema recipe);
+    long insert(RecipeSchema recipe);
 
     @Transaction
     @Query("SELECT * FROM Recipe ORDER BY lastAccess DESC")

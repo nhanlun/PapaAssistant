@@ -1,5 +1,6 @@
 package com.example.papaassistant.Activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
@@ -9,6 +10,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.example.papaassistant.Adapter.SearchListAdapter;
@@ -53,7 +57,7 @@ public class LibraryActivity extends AppCompatActivity {
                     public void onItemClick(int position, View v) {
                         Recipe recipe = recipes.get(position);
                         Log.d(LOG_TAG, "Step of recipe: " + recipe.instructions.size());
-                        Intent intent = new Intent(LibraryActivity.this, RecipeActivity.class);
+                        Intent intent = new Intent(LibraryActivity.this, ModifyRecipeActivity.class);
                         intent.putExtra("recipe", recipe);
                         startActivity(intent);
                     }

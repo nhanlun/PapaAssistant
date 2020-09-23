@@ -1,6 +1,7 @@
 package com.example.papaassistant;
 
 import android.app.Application;
+import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 
@@ -15,6 +16,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RecipeRepository {
+
+    private static final String LOG_TAG = RecipeRepository.class.getSimpleName();
 
     private InstructionDAO instructionDAOHistory;
     private RecipeDAO recipeDAOHistory;
@@ -32,9 +35,16 @@ public class RecipeRepository {
     }
 
     public void insertRecipeToLibrary(final Recipe recipe) {
-        int recipeId = recipe.recipe.getId();
+        final int recipeId = recipe.recipe.getId();
+        LibraryDatabase.databaseWriteExecutor.execute(new Runnable() {
+            @Override
+            public void run() {
+                recipeDAOLibrary.insert(recipe.recipe);
+            }
+        });
         for (int i = 0; i < recipe.instructions.size(); ++i) {
             Instruction instruction = recipe.instructions.get(i);
+            Log.d(LOG_TAG, instruction.getInstruction());
             final InstructionSchema instructionSchema = new InstructionSchema(recipeId, instruction);
             LibraryDatabase.databaseWriteExecutor.execute(new Runnable() {
                 @Override
@@ -43,16 +53,16 @@ public class RecipeRepository {
                 }
             });
         }
-        LibraryDatabase.databaseWriteExecutor.execute(new Runnable() {
-            @Override
-            public void run() {
-                recipeDAOLibrary.insert(recipe.recipe);
-            }
-        });
     }
 
     public void insertRecipeToHistory(final Recipe recipe) {
         int recipeId = recipe.recipe.getId();
+        HistoryDatabase.databaseWriteExecutor.execute(new Runnable() {
+            @Override
+            public void run() {
+                recipeDAOHistory.insert(recipe.recipe);
+            }
+        });
         for (int i = 0; i < recipe.instructions.size(); ++i) {
             Instruction instruction = recipe.instructions.get(i);
             final InstructionSchema instructionSchema = new InstructionSchema(recipeId, instruction);
@@ -63,12 +73,6 @@ public class RecipeRepository {
                 }
             });
         }
-        HistoryDatabase.databaseWriteExecutor.execute(new Runnable() {
-            @Override
-            public void run() {
-                recipeDAOHistory.insert(recipe.recipe);
-            }
-        });
     }
 
     public LiveData<List<Recipe>> getRecipeInHistory() {
@@ -104,5 +108,25 @@ public class RecipeRepository {
 
     public LiveData<List<Recipe>> getRecipeInLibrary() {
         return recipeDAOLibrary.getRecipe();
+    }
+
+    public void deleteLibrary(final Recipe recipe) {
+        int id = recipe.recipe.getId();
+        LibraryDatabase.databaseWriteExecutor.execute(new Runnable() {
+            @Override
+            public void run() {
+                RecipeSchema recipeSchema = recipe.recipe;
+                recipeDAOLibrary.delete(recipeSchema);
+            }
+        });
+        for (int i = 0; i < recipe.instructions.size(); ++i) {
+            final InstructionSchema instructionSchema = new InstructionSchema(id, recipe.instructions.get(i));
+            LibraryDatabase.databaseWriteExecutor.execute(new Runnable() {
+                @Override
+                public void run() {
+                    instructionDAOLibrary.delete(instructionSchema);
+                }
+            });
+        }
     }
 }

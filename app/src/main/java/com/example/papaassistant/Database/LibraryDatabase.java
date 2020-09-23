@@ -17,8 +17,8 @@ import java.util.concurrent.Executors;
 @Database(entities = {RecipeSchema.class, InstructionSchema.class}, version = 1, exportSchema = false)
 public abstract class LibraryDatabase extends RoomDatabase {
 
-    public abstract RecipeDAO recipeDAO();
     public abstract InstructionDAO instructionDAO();
+    public abstract RecipeDAO recipeDAO();
 
     private static final int NUMBER_OF_THREADS = 10;
     public static final ExecutorService databaseWriteExecutor =

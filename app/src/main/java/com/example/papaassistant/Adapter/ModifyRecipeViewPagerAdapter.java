@@ -1,6 +1,8 @@
 package com.example.papaassistant.Adapter;
 
 import android.content.Context;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -74,12 +76,36 @@ public class ModifyRecipeViewPagerAdapter extends RecyclerView.Adapter<RecyclerV
             if (position == 1) {
                 viewHolder.editTextItemRecipe.setText(recipe.recipe.getIngredients());
                 viewHolder.editTextStep.setText(context.getString(R.string.step, 0));
+                viewHolder.editTextItemRecipe.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) { }
+
+                    @Override
+                    public void afterTextChanged(Editable s) {
+                        recipe.recipe.setIngredients(s.toString());
+                    }
+                });
             }
             else {
-                int positionInInstruction = position - 2;
+                final int positionInInstruction = position - 2;
                 Instruction instruction = recipe.instructions.get(positionInInstruction);
                 viewHolder.editTextItemRecipe.setText(instruction.getInstruction());
                 viewHolder.editTextStep.setText(context.getString(R.string.step, instruction.getStep()));
+                viewHolder.editTextItemRecipe.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) { }
+
+                    @Override
+                    public void afterTextChanged(Editable s) {
+                        recipe.instructions.get(positionInInstruction).setInstruction(s.toString());
+                    }
+                });
             }
         }
     }
