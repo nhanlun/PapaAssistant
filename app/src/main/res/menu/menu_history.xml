@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         app:showAsAction="always"
-        android:icon="@drawable/ic_baseline_save_24"
-        android:title="Save" />
+        android:title="Clear all history"
+        android:icon="@drawable/ic_baseline_delete_24"
+        />
 </menu>
