@@ -3,7 +3,6 @@ package com.example.papaassistant.Adapter;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +25,7 @@ public class SearchListAdapter extends RecyclerView.Adapter<SearchListAdapter.Vi
     private static int cornerRadius = 10;
     private Context context;
     private ArrayList<Recipe> recipes;
+    private static ClickListener clickListener;
 
     public SearchListAdapter(Context context, ArrayList<Recipe> recipes) {
         this.context = context;
@@ -59,6 +59,10 @@ public class SearchListAdapter extends RecyclerView.Adapter<SearchListAdapter.Vi
         return recipes.size();
     }
 
+    public void setOnItemClickListener(ClickListener clickListener) {
+        SearchListAdapter.clickListener = clickListener;
+    }
+
     static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView nameTextView;
         public TextView servingTextView;
@@ -68,6 +72,7 @@ public class SearchListAdapter extends RecyclerView.Adapter<SearchListAdapter.Vi
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            itemView.setOnClickListener(this);
             imageView = itemView.findViewById(R.id.dishImageView);
             nameTextView = itemView.findViewById(R.id.recipeName);
             servingTextView = itemView.findViewById(R.id.recipeNumOfPeople);
@@ -75,10 +80,14 @@ public class SearchListAdapter extends RecyclerView.Adapter<SearchListAdapter.Vi
             timeTextView = itemView.findViewById(R.id.recipeTime);
         }
 
+
         @Override
         public void onClick(View v) {
-            //TODO:
+            clickListener.onItemClick(getAdapterPosition(), v);
         }
     }
 
+    public interface ClickListener {
+        void onItemClick(int position, View v);
+    }
 }

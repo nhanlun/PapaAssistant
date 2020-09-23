@@ -1,10 +1,14 @@
 package com.example.papaassistant.Activity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -17,7 +21,6 @@ import com.example.papaassistant.RecipeAPIGETer;
 import com.example.papaassistant.uiThreadCallback;
 
 import java.util.ArrayList;
-import java.util.Formatter;
 import java.util.HashMap;
 
 public class SearchActivity extends AppCompatActivity implements uiThreadCallback {
@@ -46,10 +49,7 @@ public class SearchActivity extends AppCompatActivity implements uiThreadCallbac
 
     private void startAsyncTask() {
         Intent intent = getIntent();
-        query = intent.getStringExtra("query");
-
-        HashMap<String, String> arguments = new HashMap<>();
-        arguments.put("query", query);
+        HashMap<String, String> arguments = (HashMap<String, String>) intent.getSerializableExtra("arguments");
 
         RecipeAPIGETer geter = new RecipeAPIGETer(this, arguments);
         geter.setUiThreadCallbackWeakReference(this);
@@ -64,12 +64,21 @@ public class SearchActivity extends AppCompatActivity implements uiThreadCallbac
 //        textView.setText(getString(R.string.search_found, query, recipes.size()));
 
         SearchListAdapter adapter = new SearchListAdapter(this, recipes);
-        recyclerView.setAdapter(adapter);
-        recyclerView.setOnClickListener(new View.OnClickListener() {
+        adapter.setOnItemClickListener(new SearchListAdapter.ClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onItemClick(int position, View v) {
+                Log.d("ItemClickListener", "huhu click roi ma");
+                Recipe recipe = recipes.get(position);
+                ImageView view = v.findViewById(R.id.dishImageView);
+                Bitmap bitmap = ((BitmapDrawable) view.getDrawable()).getBitmap();
+                Intent intent = new Intent(SearchActivity.this, RecipeActivity.class);
+                intent.putExtra("recipe", recipe);
+                intent.putExtra("image", bitmap);
+                startActivity(intent);
             }
         });
+        recyclerView.setAdapter(adapter);
+
 
     }
 }
