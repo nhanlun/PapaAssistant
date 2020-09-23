@@ -63,8 +63,8 @@ public class MainActivity extends AppCompatActivity {
 //        intent.putExtra("recipe", recipe);
 //        startActivity(intent);
 
-//        Intent intent = new Intent(MainActivity.this, HistoryActivity.class);
-//        startActivity(intent);
+        Intent intent = new Intent(MainActivity.this, HistoryActivity.class);
+        startActivity(intent);
 
         editTextSearch = findViewById(R.id.editTextSearch);
         editTextSearch.addTextChangedListener(new TextWatcher() {
@@ -130,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
                 DishType dishType = dishTypeList.getDishTypeArrayList().get(position);
                 String query = dishType.getName();
                 HashMap<String, String> arguments = new HashMap<>();
-                arguments.put("mealType", query);
+                arguments.put("type", query);
 
                 Intent intent = new Intent(MainActivity.this, SearchActivity.class);
                 intent.putExtra("arguments", arguments);

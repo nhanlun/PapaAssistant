@@ -6,10 +6,16 @@ import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.example.papaassistant.Adapter.SearchListAdapter;
+import com.example.papaassistant.Adapter.ViewPagerAdapter;
 import com.example.papaassistant.R;
 import com.example.papaassistant.Recipe;
 import com.example.papaassistant.RecipeRepository;
@@ -46,6 +52,18 @@ public class HistoryActivity extends AppCompatActivity {
             public void onChanged(List<Recipe> recipesTmp) {
                 recipes = (ArrayList<Recipe>) recipesTmp;
                 adapter = new SearchListAdapter(getBaseContext(), recipes);
+                adapter.setOnItemClickListener(new SearchListAdapter.ClickListener() {
+                    @Override
+                    public void onItemClick(int position, View v) {
+                        Recipe recipe = recipes.get(position);
+                        ImageView view = v.findViewById(R.id.dishImageView);
+                        Bitmap bitmap = ((BitmapDrawable) view.getDrawable()).getBitmap();
+                        Intent intent = new Intent(HistoryActivity.this, RecipeActivity.class);
+                        intent.putExtra("recipe", recipe);
+                        intent.putExtra("image", bitmap);
+                        startActivity(intent);
+                    }
+                });
                 recyclerView.setAdapter(adapter);
             }
         });
