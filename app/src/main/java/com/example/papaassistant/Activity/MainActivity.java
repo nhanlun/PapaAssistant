@@ -8,6 +8,7 @@ import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
 
 import androidx.annotation.NonNull;
@@ -17,11 +18,13 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.papaassistant.Adapter.ViewPagerAdapter;
+import com.example.papaassistant.DishType;
 import com.example.papaassistant.DishTypeList;
 import com.example.papaassistant.Instruction;
 import com.example.papaassistant.R;
 import com.example.papaassistant.Recipe;
 
+import java.util.HashMap;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -43,56 +46,35 @@ public class MainActivity extends AppCompatActivity {
 
         initDrawerLayout();
         initComponents();
+        initAutoSwipe();
 
         // TODO: remove this
 
-        Recipe recipe = new Recipe();
-        recipe.recipe.setImageLink("https://spoonacular.com/recipeImages/654959-312x231.jpg");
-        recipe.recipe.setName("Something good :v");
-        recipe.recipe.setIngredients("Something\nGood");
-        recipe.recipe.setHealthScore(100);
-        recipe.recipe.setId(1);
-        Instruction tmp = new Instruction();
-        tmp.setStep(1);
-        tmp.setInstruction("just cook it :v");
-        recipe.instructions.add(tmp);
-        recipe.instructions.add(tmp);
-        Intent intent = new Intent(MainActivity.this, RecipeActivity.class);
-        intent.putExtra("recipe", recipe);
-        startActivity(intent);
+//        Recipe recipe = new Recipe();
+//        recipe.recipe.setImageLink("https://spoonacular.com/recipeImages/654959-312x231.jpg");
+//        recipe.recipe.setName("Something good :v");
+//        recipe.recipe.setIngredients("Something\nGood");
+//        recipe.recipe.setHealthScore(100);
+//        recipe.recipe.setId(1);
+//        Instruction tmp = new Instruction();
+//        tmp.setStep(1);
+//        tmp.setInstruction("just cook it :v");
+//        recipe.instructions.add(tmp);
+//        recipe.instructions.add(tmp);
+//        Intent intent = new Intent(MainActivity.this, RecipeActivity.class);
+//        intent.putExtra("recipe", recipe);
+//        startActivity(intent);
 
 //        Intent intent = new Intent(MainActivity.this, HistoryActivity.class);
 //        startActivity(intent);
 
-        final Handler handler = new Handler();
-        final Runnable Update = new Runnable() {
-            public void run() {
-                if (currentPage == NUM_PAGES) {
-                    currentPage = 0;
-                }
-                //currentPage = viewPager2.getCurrentItem();
-                viewPager2.setCurrentItem(currentPage++, true);
-            }
-        };
-
-        Timer swipeTimer = new Timer();
-        swipeTimer.schedule(new TimerTask() {
-
-            @Override
-            public void run() {
-                handler.post(Update);
-            }
-        }, 2000, 5000);
-
         editTextSearch = findViewById(R.id.editTextSearch);
         editTextSearch.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-            }
+            public void onTextChanged(CharSequence s, int start, int before, int count) { }
 
             @Override
             public void afterTextChanged(Editable s) {
@@ -114,11 +96,46 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private void initAutoSwipe() {
+        final Handler handler = new Handler();
+        final Runnable Update = new Runnable() {
+            public void run() {
+                //currentPage = viewPager2.getCurrentItem();
+                if (currentPage == NUM_PAGES) {
+                    currentPage = 0;
+                }
+                viewPager2.setCurrentItem(currentPage++, true);
+            }
+        };
+
+        Timer swipeTimer = new Timer();
+        swipeTimer.schedule(new TimerTask() {
+
+            @Override
+            public void run() {
+                handler.post(Update);
+            }
+        }, 2000, 5000);
+    }
+
     private void initComponents() {
-        viewPager2 = findViewById(R.id.mainViewPager);
-        DishTypeList dishTypeList = new DishTypeList();
+        final DishTypeList dishTypeList = new DishTypeList();
         dishTypeList.createList();
+        viewPager2 = findViewById(R.id.mainViewPager);
         viewPagerAdapter = new ViewPagerAdapter(this, dishTypeList.getDishTypeArrayList());
+        viewPagerAdapter.setOnItemClickListener(new ViewPagerAdapter.ItemClickListener() {
+            @Override
+            public void onItemClick(int position, View v) {
+                DishType dishType = dishTypeList.getDishTypeArrayList().get(position);
+                String query = dishType.getName();
+                HashMap<String, String> arguments = new HashMap<>();
+                arguments.put("mealType", query);
+
+                Intent intent = new Intent(MainActivity.this, SearchActivity.class);
+                intent.putExtra("arguments", arguments);
+                startActivity(intent);
+            }
+        });
         viewPager2.setAdapter(viewPagerAdapter);
     }
 

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -39,6 +40,8 @@ public class SearchActivity extends AppCompatActivity implements uiThreadCallbac
         recyclerView = findViewById(R.id.listRecipe);
         RecyclerView.LayoutManager lm = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(lm);
+        Toast toast = Toast.makeText(this, "Searching", Toast.LENGTH_SHORT);
+        toast.show();
     }
 
     private void startAsyncTask() {
@@ -56,6 +59,8 @@ public class SearchActivity extends AppCompatActivity implements uiThreadCallbac
     @Override
     public void publishToUiThread(ArrayList<Recipe> recipeArrayList) {
         recipes = recipeArrayList;
+        Toast toast = Toast.makeText(this, "Displaying " + recipes.size() + " recipes", Toast.LENGTH_LONG);
+        toast.show();
 //        textView.setText(getString(R.string.search_found, query, recipes.size()));
 
         SearchListAdapter adapter = new SearchListAdapter(this, recipes);
