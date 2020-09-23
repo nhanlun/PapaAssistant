@@ -8,7 +8,66 @@
     <string name="recipe_img">Recipe Image</string>
     <string name="library">Library</string>
     <string name="history">History</string>
+
     <string name="advance_search">Advanced Search</string>
+    <string name="max_ready_time">Max ready time</string>
+    <string name="intolerance">Intolerance</string>
+    <string-array name="intolerance_options">
+        <item>Dairy</item>
+        <item>Egg</item>
+        <item>Gluten</item>
+        <item>Grain</item>
+        <item>Peanut</item>
+        <item>Seafood</item>
+        <item>Sesame</item>
+        <item>Shellfish</item>
+        <item>Soy</item>
+        <item>Sulfite</item>
+        <item>Tree Nut</item>
+        <item>Wheat</item>
+        <item></item>
+    </string-array>
+    <string name="require_ingredient">Required ingredients</string>
+    <string name="cuisine">Cuisine</string>
+    <string-array name="cuisine_option">
+        <item>African</item>
+        <item>American</item>
+        <item>British</item>
+        <item>Cajun</item>
+        <item>Caribbean</item>
+        <item>Chinese</item>
+        <item>Eastern European</item>
+        <item>European</item>
+        <item>French</item>
+        <item>German</item>
+        <item>Greek</item>
+        <item>Indian</item>
+        <item>Irish</item>
+        <item>Italian</item>
+        <item>Japanese</item>
+        <item>Jewish</item>
+        <item>Korean</item>
+        <item>Latin American</item>
+        <item>Mediterranean</item>
+        <item>Mexican</item>
+        <item>Middle Eastern</item>
+        <item>Nordic</item>
+        <item>Southern</item>
+        <item>Spanish</item>
+        <item>Thai</item>
+        <item>Vietnamese</item>
+        <item></item>
+    </string-array>
+    <string name="diet">Diet</string>
+    <string-array name="diet_options">
+        <item>Vegetarian</item>
+        <item>Gluten Free</item>
+        <item>Ketogenic</item>
+        <item>Vegan</item>
+        <item></item>
+    </string-array>
+    <string name="search">Search</string>
+
     <string name="setting">Setting</string>
 
     <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>

@@ -5,8 +5,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -40,14 +38,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
 
         initDrawerLayout();
         initComponents();
         initAutoSwipe();
 
-        // TODO: remove this
 
+        // TODO: remove this
 //        Recipe recipe = new Recipe();
 //        recipe.recipe.setImageLink("https://spoonacular.com/recipeImages/654959-312x231.jpg");
 //        recipe.recipe.setName("Something good :v");
@@ -86,7 +85,6 @@ public class MainActivity extends AppCompatActivity {
                         found = true;
                     }
                 if (found) {
-                    // TODO: call activity search
                     String query = s.toString();
                     HashMap<String, String> arguments = new HashMap<>();
                     arguments.put("query", query);
@@ -184,5 +182,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void startAdvancedSearch(MenuItem item) {
+        Intent intent = new Intent(MainActivity.this, AdvanceSearchActivity.class);
+        startActivity(intent);
     }
 }

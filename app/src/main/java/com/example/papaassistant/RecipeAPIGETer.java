@@ -25,12 +25,19 @@ public class RecipeAPIGETer extends AsyncTask<Void, Void, ArrayList<Recipe>> {
     private static final String BASEURL = "https://api.spoonacular.com/recipes/complexSearch";
     private static final String APIKEY = "apiKey";
     final String apiKey;
-    private static final String QUERY = "query";
-    private static final String RECIPEINFO = "addRecipeInformation";
-    private static final String RECIPENUTRI = "addRecipeNutrition";
-    private static final String INSTRUCTION = "instructionsRequired";
-    private static final String NUMBER = "number";
-    private static final String DISHTYPE = "type";
+    // API Parameters
+    public static final String QUERY = "query";
+    public static final String RECIPEINFO = "addRecipeInformation";
+    public static final String RECIPENUTRI = "addRecipeNutrition";
+    public static final String INSTRUCTION = "instructionsRequired";
+    public static final String NUMBER = "number";
+    public static final String DISHTYPE = "type";
+    public static final String INGREDIENT = "includeIngredients";
+    public static final String READYTIME = "maxReadyTime";
+    public static final String INTOLERANCE = "intolerances";
+    public static final String CUISINE = "cuisine";
+    public static final String DIET = "diet";
+
 
     final private String baseImageUrl = "https://spoonacular.com/recipeImages/";
     final private String imageSize = "-480x360.";
@@ -170,10 +177,27 @@ public class RecipeAPIGETer extends AsyncTask<Void, Void, ArrayList<Recipe>> {
                 .appendQueryParameter(APIKEY, apiKey);
 
         if (arguments.containsKey(DISHTYPE)) {
-            buildUri.appendQueryParameter(DISHTYPE, arguments.get("type"));
-        } else {
-            buildUri.appendQueryParameter(QUERY, arguments.get("query"));
+            buildUri.appendQueryParameter(DISHTYPE, arguments.get(DISHTYPE));
         }
+        if (arguments.containsKey(QUERY)) {
+            buildUri.appendQueryParameter(QUERY, arguments.get(QUERY));
+        }
+        if (arguments.containsKey(INGREDIENT)) {
+            buildUri.appendQueryParameter(INGREDIENT, arguments.get(INGREDIENT));
+        }
+        if (arguments.containsKey(READYTIME)) {
+            buildUri.appendQueryParameter(READYTIME, arguments.get(READYTIME));
+        }
+        if (arguments.containsKey(INTOLERANCE)) {
+            buildUri.appendQueryParameter(INTOLERANCE, arguments.get(INTOLERANCE));
+        }
+        if (arguments.containsKey(CUISINE)) {
+            buildUri.appendQueryParameter(CUISINE, arguments.get(CUISINE));
+        }
+        if (arguments.containsKey(DIET)) {
+            buildUri.appendQueryParameter(DIET, arguments.get(DIET));
+        }
+
         buildUri.appendQueryParameter(RECIPEINFO, "true")
                 .appendQueryParameter(RECIPENUTRI, "true")
                 .appendQueryParameter(INSTRUCTION, "true")
