@@ -2,9 +2,8 @@ package com.example.papaassistant.Adapter;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
-import android.graphics.Bitmap;
 import android.graphics.PorterDuff;
-import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +14,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.papaassistant.Instruction;
 import com.example.papaassistant.R;
 import com.example.papaassistant.Recipe;
@@ -24,7 +24,7 @@ public class RecipeViewPagerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
 
     Context context;
     Recipe recipe;
-    Bitmap bitmap;
+    Drawable drawable;
 
     public static class ViewHolder0 extends RecyclerView.ViewHolder {
         public ImageView imageView;
@@ -47,10 +47,9 @@ public class RecipeViewPagerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         }
     }
 
-    public RecipeViewPagerAdapter(Context context, Recipe recipe, Bitmap bitmap) {
+    public RecipeViewPagerAdapter(Context context, Recipe recipe) {
         this.context = context;
         this.recipe = recipe;
-        this.bitmap = bitmap;
     }
 
     @Override
@@ -78,16 +77,11 @@ public class RecipeViewPagerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         if (position == 0) {
             ViewHolder0 viewHolder = (ViewHolder0) holder;
-            if (bitmap != null)
-                viewHolder.imageView.setImageBitmap(bitmap);
+            Glide.with(context).load(recipe.recipe.getImageLink()).placeholder(R.drawable.no_image)
+                    .into(viewHolder.imageView);
         }
         else {
             ViewHolder1 viewHolder = (ViewHolder1) holder;
-            if (bitmap != null) {
-                viewHolder.textViewItemRecipe.setBackground(new BitmapDrawable(context.getResources(), bitmap));
-                viewHolder.textViewItemRecipe.setBackgroundTintMode(PorterDuff.Mode.SCREEN);
-                viewHolder.textViewItemRecipe.setBackgroundTintList(ColorStateList.valueOf(0xdddddddd));
-            }
             if (position == 1) {
                 viewHolder.textViewItemRecipe.setText(recipe.recipe.getIngredients());
                 viewHolder.textViewStep.setText(context.getString(R.string.step, 0));

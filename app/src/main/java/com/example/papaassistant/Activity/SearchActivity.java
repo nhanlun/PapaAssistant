@@ -59,7 +59,7 @@ public class SearchActivity extends AppCompatActivity implements uiThreadCallbac
     @Override
     public void publishToUiThread(ArrayList<Recipe> recipeArrayList) {
         recipes = recipeArrayList;
-        Toast toast = Toast.makeText(this, "Displaying " + recipes.size() + " recipes", Toast.LENGTH_LONG);
+        Toast toast = Toast.makeText(this, "Displaying " + recipes.size() + " recipes", Toast.LENGTH_SHORT);
         toast.show();
 //        textView.setText(getString(R.string.search_found, query, recipes.size()));
 
@@ -67,13 +67,10 @@ public class SearchActivity extends AppCompatActivity implements uiThreadCallbac
         adapter.setOnItemClickListener(new SearchListAdapter.ClickListener() {
             @Override
             public void onItemClick(int position, View v) {
-                Log.d("ItemClickListener", "huhu click roi ma");
+//                Log.d("ItemClickListener", "huhu click roi ma");
                 Recipe recipe = recipes.get(position);
-                ImageView view = v.findViewById(R.id.dishImageView);
-                Bitmap bitmap = ((BitmapDrawable) view.getDrawable()).getBitmap();
                 Intent intent = new Intent(SearchActivity.this, RecipeActivity.class);
                 intent.putExtra("recipe", recipe);
-                intent.putExtra("image", bitmap);
                 startActivity(intent);
             }
         });

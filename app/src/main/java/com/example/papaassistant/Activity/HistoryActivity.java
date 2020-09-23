@@ -56,11 +56,8 @@ public class HistoryActivity extends AppCompatActivity {
                     @Override
                     public void onItemClick(int position, View v) {
                         Recipe recipe = recipes.get(position);
-                        ImageView view = v.findViewById(R.id.dishImageView);
-                        Bitmap bitmap = ((BitmapDrawable) view.getDrawable()).getBitmap();
                         Intent intent = new Intent(HistoryActivity.this, RecipeActivity.class);
                         intent.putExtra("recipe", recipe);
-                        intent.putExtra("image", bitmap);
                         startActivity(intent);
                     }
                 });

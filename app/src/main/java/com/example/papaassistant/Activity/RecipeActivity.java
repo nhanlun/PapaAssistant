@@ -2,13 +2,20 @@ package com.example.papaassistant.Activity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.RequestBuilder;
+import com.bumptech.glide.request.target.CustomTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.example.papaassistant.Adapter.RecipeViewPagerAdapter;
 import com.example.papaassistant.R;
 import com.example.papaassistant.Recipe;
@@ -52,7 +59,6 @@ public class RecipeActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         recipe = (Recipe) intent.getSerializableExtra("recipe");
-        Bitmap bitmap = intent.getParcelableExtra("image");
 
         if (recipe == null)
             return;
@@ -61,7 +67,7 @@ public class RecipeActivity extends AppCompatActivity {
         textViewNumberOfPeople.setText(String.valueOf(recipe.recipe.getNumberOfPeople()));
         textViewHealthScore.setText(String.valueOf(recipe.recipe.getHealthScore()));
         textViewReadyTime.setText(String.valueOf(recipe.recipe.getReadyTime()));
-        RecipeViewPagerAdapter adapter = new RecipeViewPagerAdapter(this, recipe, bitmap);
+        RecipeViewPagerAdapter adapter = new RecipeViewPagerAdapter(this, recipe);
         viewPager2.setAdapter(adapter);
     }
 }
