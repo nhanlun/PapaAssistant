@@ -173,4 +173,11 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public void startHistory(MenuItem item) {
+        Intent intent = new Intent(MainActivity.this, HistoryActivity.class);
+        startActivity(intent);
+    }
+
+    public void startAdvancedSearch(MenuItem item) {
+    }
 }
