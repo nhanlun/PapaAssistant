@@ -5,6 +5,7 @@ import androidx.room.PrimaryKey;
 import androidx.room.TypeConverters;
 
 import com.example.papaassistant.DateConverter;
+import com.example.papaassistant.Recipe;
 
 import java.io.Serializable;
 import java.util.Date;

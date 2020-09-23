@@ -8,6 +8,7 @@ import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
 
 import androidx.annotation.NonNull;
@@ -17,11 +18,11 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.papaassistant.Adapter.ViewPagerAdapter;
+import com.example.papaassistant.DishType;
 import com.example.papaassistant.DishTypeList;
-import com.example.papaassistant.Instruction;
 import com.example.papaassistant.R;
-import com.example.papaassistant.Recipe;
 
+import java.util.HashMap;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -33,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
     int currentPage = 0;
     int NUM_PAGES = 4;
 
-
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle drawerToggle;
 
@@ -43,14 +43,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         initDrawerLayout();
-
+        initComponents();
+        initAutoSwipe();
 
         // TODO: remove this
 
 //        Recipe recipe = new Recipe();
 //        recipe.recipe.setImageLink("https://spoonacular.com/recipeImages/654959-312x231.jpg");
-//        recipe.recipe.setName("Indomie with omelettttttttttttttttttttttttt");
-//        recipe.recipe.setIngredients("Indomie\nEgg");
+//        recipe.recipe.setName("Something good :v");
+//        recipe.recipe.setIngredients("Something\nGood");
+//        recipe.recipe.setHealthScore(100);
+//        recipe.recipe.setId(1);
 //        Instruction tmp = new Instruction();
 //        tmp.setStep(1);
 //        tmp.setInstruction("just cook it :v");
@@ -59,44 +62,17 @@ public class MainActivity extends AppCompatActivity {
 //        Intent intent = new Intent(MainActivity.this, RecipeActivity.class);
 //        intent.putExtra("recipe", recipe);
 //        startActivity(intent);
-//
-//        intent = new Intent(MainActivity.this, HistoryActivity.class);
+
+//        Intent intent = new Intent(MainActivity.this, HistoryActivity.class);
 //        startActivity(intent);
-
-        viewPager2 = findViewById(R.id.mainViewPager);
-        DishTypeList dishTypeList = new DishTypeList();
-        dishTypeList.createList();
-        viewPagerAdapter = new ViewPagerAdapter(this, dishTypeList.getDishTypeArrayList());
-        viewPager2.setAdapter(viewPagerAdapter);
-        final Handler handler = new Handler();
-        final Runnable Update = new Runnable() {
-            public void run() {
-                if (currentPage == NUM_PAGES) {
-                    currentPage = 0;
-                }
-                //currentPage = viewPager2.getCurrentItem();
-                viewPager2.setCurrentItem(currentPage++, true);
-            }
-        };
-
-        Timer swipeTimer = new Timer();
-        swipeTimer.schedule(new TimerTask() {
-
-            @Override
-            public void run() {
-                handler.post(Update);
-            }
-        }, 2000, 5000);
 
         editTextSearch = findViewById(R.id.editTextSearch);
         editTextSearch.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-            }
+            public void onTextChanged(CharSequence s, int start, int before, int count) { }
 
             @Override
             public void afterTextChanged(Editable s) {
@@ -109,13 +85,59 @@ public class MainActivity extends AppCompatActivity {
                 if (found) {
                     // TODO: call activity search
                     String query = s.toString();
+                    HashMap<String, String> arguments = new HashMap<>();
+                    arguments.put("query", query);
+
                     Intent intent = new Intent(MainActivity.this, SearchActivity.class);
-                    intent.putExtra("query", query);
+                    intent.putExtra("arguments", arguments);
                     startActivity(intent);
                     s.clear();
                 }
             }
         });
+    }
+
+    private void initAutoSwipe() {
+        final Handler handler = new Handler();
+        final Runnable Update = new Runnable() {
+            public void run() {
+                //currentPage = viewPager2.getCurrentItem();
+                if (currentPage == NUM_PAGES) {
+                    currentPage = 0;
+                }
+                viewPager2.setCurrentItem(currentPage++, true);
+            }
+        };
+
+        Timer swipeTimer = new Timer();
+        swipeTimer.schedule(new TimerTask() {
+
+            @Override
+            public void run() {
+                handler.post(Update);
+            }
+        }, 2000, 5000);
+    }
+
+    private void initComponents() {
+        final DishTypeList dishTypeList = new DishTypeList();
+        dishTypeList.createList();
+        viewPager2 = findViewById(R.id.mainViewPager);
+        viewPagerAdapter = new ViewPagerAdapter(this, dishTypeList.getDishTypeArrayList());
+        viewPagerAdapter.setOnItemClickListener(new ViewPagerAdapter.ItemClickListener() {
+            @Override
+            public void onItemClick(int position, View v) {
+                DishType dishType = dishTypeList.getDishTypeArrayList().get(position);
+                String query = dishType.getName();
+                HashMap<String, String> arguments = new HashMap<>();
+                arguments.put("type", query);
+
+                Intent intent = new Intent(MainActivity.this, SearchActivity.class);
+                intent.putExtra("arguments", arguments);
+                startActivity(intent);
+            }
+        });
+        viewPager2.setAdapter(viewPagerAdapter);
     }
 
     private void initDrawerLayout() {
@@ -132,13 +154,13 @@ public class MainActivity extends AppCompatActivity {
         // Sync the toggle state after onRestoreInstanceState has occurred.
         drawerToggle.syncState();
     }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
+//  TODO: remove this
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        MenuInflater inflater = getMenuInflater();
+//        inflater.inflate(R.menu.menu, menu);
+//        return super.onCreateOptionsMenu(menu);
+//    }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {

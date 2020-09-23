@@ -3,7 +3,6 @@ package com.example.papaassistant.Adapter;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,8 +22,10 @@ import com.example.papaassistant.Recipe;
 import java.util.ArrayList;
 
 public class SearchListAdapter extends RecyclerView.Adapter<SearchListAdapter.ViewHolder> {
+    private static int cornerRadius = 10;
     private Context context;
     private ArrayList<Recipe> recipes;
+    private static ClickListener clickListener;
 
     public SearchListAdapter(Context context, ArrayList<Recipe> recipes) {
         this.context = context;
@@ -49,14 +50,17 @@ public class SearchListAdapter extends RecyclerView.Adapter<SearchListAdapter.Vi
         Glide.with(context).load(recipe.recipe.getImageLink())
                 .placeholder(R.drawable.no_image)
                 .transform(new MultiTransformation<Bitmap>(new CenterCrop(),
-                        new RoundedCorners((int) (5 * Resources.getSystem().getDisplayMetrics().density))))
+                        new RoundedCorners((int) (cornerRadius * Resources.getSystem().getDisplayMetrics().density))))
                 .into(holder.imageView);
-//        Log.d("Holder", String.valueOf(position));
     }
 
     @Override
     public int getItemCount() {
         return recipes.size();
+    }
+
+    public void setOnItemClickListener(ClickListener clickListener) {
+        SearchListAdapter.clickListener = clickListener;
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -68,6 +72,7 @@ public class SearchListAdapter extends RecyclerView.Adapter<SearchListAdapter.Vi
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            itemView.setOnClickListener(this);
             imageView = itemView.findViewById(R.id.dishImageView);
             nameTextView = itemView.findViewById(R.id.recipeName);
             servingTextView = itemView.findViewById(R.id.recipeNumOfPeople);
@@ -75,10 +80,14 @@ public class SearchListAdapter extends RecyclerView.Adapter<SearchListAdapter.Vi
             timeTextView = itemView.findViewById(R.id.recipeTime);
         }
 
+
         @Override
         public void onClick(View v) {
-            //TODO:
+            clickListener.onItemClick(getAdapterPosition(), v);
         }
     }
 
+    public interface ClickListener {
+        void onItemClick(int position, View v);
+    }
 }

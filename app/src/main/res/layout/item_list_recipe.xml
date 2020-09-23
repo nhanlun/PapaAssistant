@@ -1,79 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat
+<androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:background="@drawable/border"
-    android:layout_margin="2dp">
-
-    <ImageView
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:contentDescription="@string/recipe_img"
-        android:id="@+id/dishImageView"
-        android:src="@mipmap/ic_launcher"
-        android:layout_marginStart="1dp"
-        android:layout_marginVertical="1dp" />
+    app:cardBackgroundColor="@color/colorBackGround"
+    app:cardElevation="10dp"
+    app:cardCornerRadius="10dp"
+    android:layout_margin="5dp">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:weightSum="2"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <EditText
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:contentDescription="@string/recipe_img"
+            android:id="@+id/dishImageView"
+            android:src="@mipmap/ic_launcher" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:id="@+id/recipeName"
-            android:layout_margin="5dp"
-            android:textSize="25sp"
-            android:textColor="@color/black"
-            android:enabled="false"
-            android:layout_gravity="center"
-            android:fontFamily="cursive"/>
+            android:layout_height="match_parent"
+            android:weightSum="2"
+            android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:weightSum="3"
-            android:orientation="horizontal">
-
-            <TextView
+            <EditText
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/recipeNumOfPeople"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                app:drawableStartCompat="@drawable/ic_baseline_people_alt_24"
-                android:layout_marginHorizontal="5dp"
-                android:gravity="center"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:id="@+id/recipeHealthy"
+                android:id="@+id/recipeName"
                 android:layout_margin="5dp"
-                app:drawableStartCompat="@drawable/ic_baseline_favorite_24"
-                android:layout_marginHorizontal="5dp"
-                android:gravity="center"/>
-            <TextView
+                android:textSize="22sp"
+                android:textColor="@color/black"
+                android:enabled="false"
+                android:focusable="false"
+                android:layout_gravity="center"
+                android:fontFamily="cursive"/>
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/recipeTime"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_margin="5dp"
-                app:drawableStartCompat="@drawable/ic_baseline_timer_24"
-                android:layout_marginHorizontal="5dp"
-                android:gravity="center"/>
+                android:weightSum="3"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/recipeNumOfPeople"
+                    android:layout_weight="1"
+                    app:drawableStartCompat="@drawable/ic_baseline_people_alt_24"
+                    android:layout_marginHorizontal="5dp"
+                    android:gravity="center"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:id="@+id/recipeHealthy"
+                    android:layout_margin="5dp"
+                    app:drawableStartCompat="@drawable/ic_baseline_favorite_24"
+                    android:layout_marginHorizontal="5dp"
+                    android:gravity="center"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/recipeTime"
+                    android:layout_weight="1"
+                    android:layout_margin="5dp"
+                    app:drawableStartCompat="@drawable/ic_baseline_timer_24"
+                    android:layout_marginHorizontal="5dp"
+                    android:gravity="center"/>
 
 
-        </LinearLayout>
+            </LinearLayout>
 
+        </androidx.appcompat.widget.LinearLayoutCompat>
     </androidx.appcompat.widget.LinearLayoutCompat>
 
 
 
-</androidx.appcompat.widget.LinearLayoutCompat>
+</androidx.cardview.widget.CardView>
