@@ -54,6 +54,7 @@ public class RecipeActivity extends AppCompatActivity {
         // TODO: finish this huhu
         Toast toast = Toast.makeText(this, "Saved", Toast.LENGTH_SHORT);
         toast.show();
+        recipe.recipe.setId(0);
         recipeRepository.insertRecipeToLibrary(recipe);
     }
 
@@ -69,9 +70,14 @@ public class RecipeActivity extends AppCompatActivity {
         recipeRepository = new RecipeRepository(this.getApplication());
         EditText editTextRecipe = findViewById(R.id.editTextRecipe);
         ViewPager2 viewPager2 = findViewById(R.id.recipeViewPager);
-        TextView textViewNumberOfPeople = findViewById(R.id.textViewRecipeNumberOfPeople);
-        TextView textViewHealthScore = findViewById(R.id.textViewRecipeHealthScore);
-        TextView textViewReadyTime = findViewById(R.id.textViewRecipeReadyTime);
+        EditText editTextNumberOfPeople = findViewById(R.id.editTextRecipeNumberOfPeople);
+        EditText editTextHealthScore = findViewById(R.id.editTextRecipeHealthScore);
+        EditText editTextReadyTime = findViewById(R.id.editTextRecipeReadyTime);
+
+        editTextRecipe.setEnabled(false);
+        editTextNumberOfPeople.setEnabled(false);
+        editTextHealthScore.setEnabled(false);
+        editTextReadyTime.setEnabled(false);
 
         Intent intent = getIntent();
         recipe = (Recipe) intent.getSerializableExtra("recipe");
@@ -80,9 +86,9 @@ public class RecipeActivity extends AppCompatActivity {
             return;
 
         editTextRecipe.setText(recipe.recipe.getName());
-        textViewNumberOfPeople.setText(String.valueOf(recipe.recipe.getNumberOfPeople()));
-        textViewHealthScore.setText(String.valueOf(recipe.recipe.getHealthScore()));
-        textViewReadyTime.setText(String.valueOf(recipe.recipe.getReadyTime()));
+        editTextNumberOfPeople.setText(String.valueOf(recipe.recipe.getNumberOfPeople()));
+        editTextHealthScore.setText(String.valueOf(recipe.recipe.getHealthScore()));
+        editTextReadyTime.setText(String.valueOf(recipe.recipe.getReadyTime()));
         RecipeViewPagerAdapter adapter = new RecipeViewPagerAdapter(this, recipe);
         viewPager2.setAdapter(adapter);
     }

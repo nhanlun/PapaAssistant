@@ -14,7 +14,7 @@ import java.util.Date;
 @TypeConverters({DateConverter.class})
 public class RecipeSchema implements Serializable {
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     private int id;
 
     public RecipeSchema(int id, String name, String imageLink, String ingredients, double healthScore, int numberOfPeople, int readyTime) {

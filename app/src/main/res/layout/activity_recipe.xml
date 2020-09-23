@@ -17,7 +17,6 @@
         android:textAlignment="center"
         android:textColor="@color/black"
         android:id="@+id/editTextRecipe"
-        android:enabled="false"
         android:fontFamily="cursive"
         />
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -27,33 +26,42 @@
         android:layout_marginHorizontal="20dp"
         android:layout_gravity="center">
 
-        <TextView
+        <EditText
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:textSize="18sp"
             android:layout_weight="1"
             android:layout_marginHorizontal="5dp"
-            android:id="@+id/textViewRecipeNumberOfPeople"
+            android:id="@+id/editTextRecipeNumberOfPeople"
             app:drawableStartCompat="@drawable/ic_baseline_people_alt_24"
-            android:textAlignment="textEnd"/>
-        <TextView
+            android:textAlignment="textEnd"
+            android:textColor="@color/black"
+            android:inputType="number"
+            android:background="@android:color/transparent"/>
+        <EditText
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:textSize="18sp"
             android:layout_weight="1"
             android:layout_marginHorizontal="5dp"
-            android:id="@+id/textViewRecipeHealthScore"
+            android:id="@+id/editTextRecipeHealthScore"
             app:drawableStartCompat="@drawable/ic_baseline_favorite_24"
-            android:textAlignment="textEnd"/>
-        <TextView
+            android:textAlignment="textEnd"
+            android:textColor="@color/black"
+            android:inputType="numberDecimal"
+            android:background="@android:color/transparent"/>
+        <EditText
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:textSize="18sp"
             android:layout_weight="1"
             android:layout_marginHorizontal="5dp"
-            android:id="@+id/textViewRecipeReadyTime"
+            android:id="@+id/editTextRecipeReadyTime"
             app:drawableStartCompat="@drawable/ic_baseline_timer_24"
-            android:textAlignment="textEnd"/>
+            android:textAlignment="textEnd"
+            android:textColor="@color/black"
+            android:inputType="number"
+            android:background="@android:color/transparent"/>
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <androidx.viewpager2.widget.ViewPager2

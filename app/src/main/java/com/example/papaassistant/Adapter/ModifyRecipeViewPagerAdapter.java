@@ -16,14 +16,18 @@ import com.example.papaassistant.Instruction;
 import com.example.papaassistant.R;
 import com.example.papaassistant.Recipe;
 
-public class RecipeViewPagerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    static final String LOG_TAG = RecipeViewPagerAdapter.class.getSimpleName();
+public class ModifyRecipeViewPagerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    Context context;
-    Recipe recipe;
+    private Context context;
+    private Recipe recipe;
 
-    public static class ViewHolder0 extends RecyclerView.ViewHolder {
-        public ImageView imageView;
+    public ModifyRecipeViewPagerAdapter(Context context, Recipe recipe) {
+        this.context = context;
+        this.recipe = recipe;
+    }
+
+    static class ViewHolder0 extends RecyclerView.ViewHolder {
+        private ImageView imageView;
 
         public ViewHolder0(@NonNull View itemView) {
             super(itemView);
@@ -31,29 +35,17 @@ public class RecipeViewPagerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         }
     }
 
-    public static class ViewHolder1 extends RecyclerView.ViewHolder {
-        public EditText editTextItemRecipe;
-        public EditText editTextStep;
+    static class ViewHolder1 extends RecyclerView.ViewHolder {
+        private EditText editTextItemRecipe;
+        private EditText editTextStep;
 
         public ViewHolder1(@NonNull View itemView) {
             super(itemView);
             editTextItemRecipe = itemView.findViewById(R.id.editTextItemRecipe);
             editTextItemRecipe.setMovementMethod(new ScrollingMovementMethod());
-            editTextItemRecipe.setEnabled(false);
             editTextStep = itemView.findViewById(R.id.editTextStep);
             editTextStep.setEnabled(false);
         }
-    }
-
-    public RecipeViewPagerAdapter(Context context, Recipe recipe) {
-        this.context = context;
-        this.recipe = recipe;
-    }
-
-    @Override
-    public int getItemViewType(int position) {
-        if (position == 0) return 0;
-        else return 1;
     }
 
     @NonNull
@@ -75,8 +67,7 @@ public class RecipeViewPagerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         if (position == 0) {
             ViewHolder0 viewHolder = (ViewHolder0) holder;
-            Glide.with(context).load(recipe.recipe.getImageLink()).placeholder(R.drawable.no_image)
-                    .into(viewHolder.imageView);
+            Glide.with(context).load(recipe.recipe.getImageLink()).placeholder(R.drawable.no_image).into(viewHolder.imageView);
         }
         else {
             ViewHolder1 viewHolder = (ViewHolder1) holder;
@@ -88,7 +79,7 @@ public class RecipeViewPagerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
                 int positionInInstruction = position - 2;
                 Instruction instruction = recipe.instructions.get(positionInInstruction);
                 viewHolder.editTextItemRecipe.setText(instruction.getInstruction());
-                viewHolder.editTextStep.setText(context.getString(R.string.step, positionInInstruction + 1));
+                viewHolder.editTextStep.setText(context.getString(R.string.step, instruction.getStep()));
             }
         }
     }
@@ -96,5 +87,11 @@ public class RecipeViewPagerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     @Override
     public int getItemCount() {
         return recipe.instructions.size() + 2;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        if (position == 0) return 0;
+        else return 1;
     }
 }

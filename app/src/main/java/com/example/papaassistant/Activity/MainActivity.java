@@ -66,6 +66,9 @@ public class MainActivity extends AppCompatActivity {
 //        Intent intent = new Intent(MainActivity.this, HistoryActivity.class);
 //        startActivity(intent);
 
+        Intent intent = new Intent(MainActivity.this, LibraryActivity.class);
+        startActivity(intent);
+
         editTextSearch = findViewById(R.id.editTextSearch);
         editTextSearch.addTextChangedListener(new TextWatcher() {
             @Override

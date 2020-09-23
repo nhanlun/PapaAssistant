@@ -36,14 +36,14 @@ public class RecipeRepository {
         for (int i = 0; i < recipe.instructions.size(); ++i) {
             Instruction instruction = recipe.instructions.get(i);
             final InstructionSchema instructionSchema = new InstructionSchema(recipeId, instruction);
-            HistoryDatabase.databaseWriteExecutor.execute(new Runnable() {
+            LibraryDatabase.databaseWriteExecutor.execute(new Runnable() {
                 @Override
                 public void run() {
                     instructionDAOLibrary.insert(instructionSchema);
                 }
             });
         }
-        HistoryDatabase.databaseWriteExecutor.execute(new Runnable() {
+        LibraryDatabase.databaseWriteExecutor.execute(new Runnable() {
             @Override
             public void run() {
                 recipeDAOLibrary.insert(recipe.recipe);
@@ -100,5 +100,9 @@ public class RecipeRepository {
                 });
             }
         }
+    }
+
+    public LiveData<List<Recipe>> getRecipeInLibrary() {
+        return recipeDAOLibrary.getRecipe();
     }
 }
