@@ -5,6 +5,7 @@
     <item
         android:id="@+id/libraby"
         android:title="@string/library"
+        android:onClick="startLibrary"
         app:showAsAction="never"
         />
     <item

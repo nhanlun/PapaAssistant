@@ -53,7 +53,7 @@ public class LibraryActivity extends AppCompatActivity {
                     public void onItemClick(int position, View v) {
                         Recipe recipe = recipes.get(position);
                         Log.d(LOG_TAG, "Step of recipe: " + recipe.instructions.size());
-                        Intent intent = new Intent(LibraryActivity.this, ModifyRecipeActivity.class);
+                        Intent intent = new Intent(LibraryActivity.this, RecipeActivity.class);
                         intent.putExtra("recipe", recipe);
                         startActivity(intent);
                     }

@@ -20,13 +20,13 @@ public abstract class LibraryDatabase extends RoomDatabase {
     public abstract RecipeDAO recipeDAO();
     public abstract InstructionDAO instructionDAO();
 
-    private static final int NUMBER_OF_THREAD = 10;
+    private static final int NUMBER_OF_THREADS = 10;
     public static final ExecutorService databaseWriteExecutor =
-            Executors.newFixedThreadPool(NUMBER_OF_THREAD);
+            Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
     private static volatile LibraryDatabase INSTANCE;
 
-    public static LibraryDatabase getDatabase(Context context) {
+    public static LibraryDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {
             synchronized (LibraryDatabase.class) {
                 if (INSTANCE == null) {

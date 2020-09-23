@@ -66,8 +66,8 @@ public class MainActivity extends AppCompatActivity {
 //        Intent intent = new Intent(MainActivity.this, HistoryActivity.class);
 //        startActivity(intent);
 
-        Intent intent = new Intent(MainActivity.this, LibraryActivity.class);
-        startActivity(intent);
+//        Intent intent = new Intent(MainActivity.this, LibraryActivity.class);
+//        startActivity(intent);
 
         editTextSearch = findViewById(R.id.editTextSearch);
         editTextSearch.addTextChangedListener(new TextWatcher() {
@@ -175,6 +175,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void startHistory(MenuItem item) {
         Intent intent = new Intent(MainActivity.this, HistoryActivity.class);
+        startActivity(intent);
+    }
+
+    public void startLibrary(MenuItem item) {
+        Intent intent = new Intent(MainActivity.this, LibraryActivity.class);
         startActivity(intent);
     }
 
