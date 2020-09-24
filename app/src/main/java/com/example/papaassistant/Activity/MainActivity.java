@@ -46,28 +46,6 @@ public class MainActivity extends AppCompatActivity {
         initAutoSwipe();
 
 
-        // TODO: remove this
-//        Recipe recipe = new Recipe();
-//        recipe.recipe.setImageLink("https://spoonacular.com/recipeImages/654959-312x231.jpg");
-//        recipe.recipe.setName("Something good :v");
-//        recipe.recipe.setIngredients("Something\nGood");
-//        recipe.recipe.setHealthScore(100);
-//        recipe.recipe.setId(1);
-//        Instruction tmp = new Instruction();
-//        tmp.setStep(1);
-//        tmp.setInstruction("just cook it :v");
-//        recipe.instructions.add(tmp);
-//        recipe.instructions.add(tmp);
-//        Intent intent = new Intent(MainActivity.this, RecipeActivity.class);
-//        intent.putExtra("recipe", recipe);
-//        startActivity(intent);
-
-//        Intent intent = new Intent(MainActivity.this, HistoryActivity.class);
-//        startActivity(intent);
-
-//        Intent intent = new Intent(MainActivity.this, LibraryActivity.class);
-//        startActivity(intent);
-
         editTextSearch = findViewById(R.id.editTextSearch);
         editTextSearch.addTextChangedListener(new TextWatcher() {
             @Override
@@ -155,13 +133,6 @@ public class MainActivity extends AppCompatActivity {
         // Sync the toggle state after onRestoreInstanceState has occurred.
         drawerToggle.syncState();
     }
-//  TODO: remove this
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        MenuInflater inflater = getMenuInflater();
-//        inflater.inflate(R.menu.menu, menu);
-//        return super.onCreateOptionsMenu(menu);
-//    }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
